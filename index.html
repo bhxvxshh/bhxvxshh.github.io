@@ -1,190 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bhavesh Puranam</title>
 
   <!-- Google Font -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
 
-  <!-- Tailwind CSS + dark-mode -->
+  <!-- Tailwind CSS & Dark Mode Config -->
   <script>
     tailwind.config = { darkMode: 'class' }
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- AOS for scroll reveals -->
-  <link
-    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-    rel="stylesheet"
-  />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; }
+    /* About panel transitions */
+    #about-panel {
+      transition: opacity 0.4s ease, pointer-events 0.4s ease;
+    }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Dark Mode Toggle -->
-  <button
-    id="theme-toggle"
-    class="fixed top-4 right-4 z-50 p-2 bg-gray-200 dark:bg-gray-700 rounded-full shadow"
-    aria-label="Toggle Dark Mode"
-  >
-    🌙/☀️
-  </button>
+  <button id="theme-toggle"
+          class="fixed top-4 right-4 z-50 p-2 bg-gray-200 dark:bg-gray-700 rounded-full shadow"
+          aria-label="Toggle Dark Mode">🌙/☀️</button>
 
-  <!-- Hero -->
-  <header class="flex flex-col md:flex-row items-center justify-between py-20 px-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-    <!-- Text -->
-    <div class="md:w-1/2 text-white space-y-4" data-aos="fade-right">
-      <h1 id="typewriter" class="text-4xl md:text-5xl font-extrabold"></h1>
-      <p class="text-lg max-w-lg">
-        Aspiring AI/ML engineer &amp; Data Enthusiast with hands-on experience in data engineering,
-        machine learning &amp; full-stack development.
-      </p>
-      <a
-        href="#projects"
-        class="inline-block mt-4 px-6 py-2 bg-white text-blue-600 font-semibold rounded hover:bg-gray-100 transition"
-      >
-        See my work ↓
-      </a>
-    </div>
-
-    <!-- Profile Picture -->
-    <div class="md:w-1/2 flex justify-center mt-10 md:mt-0" data-aos="fade-left">
-      <div
-        class="relative p-1 rounded-full bg-gradient-to-tr from-blue-400 to-pink-500 shadow-lg hover:scale-105 transition-transform"
-      >
-        <img
-          src="Bp.jpg"
-          alt="Bhavesh Puranam"
-          class="w-48 h-48 rounded-full object-cover brightness-110 contrast-125"
-        />
-        <div
-          class="absolute inset-0 rounded-full bg-white opacity-20 mix-blend-screen"
-        ></div>
-      </div>
-    </div>
+  <!-- Hero: white bg, typewriter -->
+  <header id="hero" class="flex items-center justify-center h-screen bg-white dark:bg-gray-900">
+    <h1 id="typed-name"
+        class="text-5xl md:text-6xl font-bold cursor-pointer select-none text-gray-900 dark:text-white"
+        title="Click to learn more"></h1>
   </header>
 
-  <!-- About Me -->
-  <section id="bio" class="py-16 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <div class="max-w-3xl mx-auto space-y-6 text-center md:text-left">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">About Me</h2>
-      <p class="text-gray-700 dark:text-gray-300">
-        Hello! I’m <strong>Bhavesh Puranam</strong>, currently pursuing
-        B.Tech in Computer Science (AI &amp; ML) at SRM Institute of Science
-        &amp; Technology, Chennai. I’ve interned at S2.AI and Pricol Ltd,
-        building scalable data pipelines, annotating 5K+ samples, deploying
-        ML models with FastAPI, and creating IoT solutions.
-      </p>
-      <div class="flex flex-wrap justify-center md:justify-start gap-3">
-        <span class="px-4 py-1 bg-blue-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full">Python</span>
-        <span class="px-4 py-1 bg-blue-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full">SQL</span>
-        <span class="px-4 py-1 bg-blue-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full">Pandas</span>
-        <span class="px-4 py-1 bg-blue-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full">FastAPI</span>
-        <span class="px-4 py-1 bg-blue-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full">Streamlit</span>
-        <span class="px-4 py-1 bg-blue-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full">Docker</span>
+  <!-- About Me Overlay -->
+  <div id="about-panel"
+       class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0 pointer-events-none">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full p-8 flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6">
+      <img src="Bp.jpg" alt="Bhavesh Puranam"
+           class="w-32 h-32 rounded-full object-cover shadow-lg"/>
+      <div class="text-gray-800 dark:text-gray-200 space-y-4">
+        <h2 class="text-2xl font-semibold">About Me</h2>
+        <p>
+          I’m <strong>Bhavesh Puranam</strong>, pursuing B.Tech in Computer Science (AI &amp; ML) at
+          SRM Institute of Science &amp; Technology. I’ve interned at S2.AI &amp; Pricol Ltd,
+          building ETL pipelines, annotating 5K+ samples, deploying ML models with FastAPI,
+          and crafting IoT solutions.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">Python</span>
+          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">SQL</span>
+          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">FastAPI</span>
+          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">Streamlit</span>
+          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">Docker</span>
+        </div>
+        <button id="about-close"
+                class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+          Close
+        </button>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Projects -->
-  <section id="projects" class="py-16 px-6 bg-gray-100 dark:bg-gray-900" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">Projects</h2>
+  <section id="projects" class="py-16 px-6 bg-gray-50 dark:bg-gray-800" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1"
-        data-aos="zoom-in"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">NutriAI</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Engineered a personalized nutrition system with YOLOv8, LLaMA 3.2, HGNN &amp; FastAPI; achieved 91% precision.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in">
+        <h3 class="text-xl font-bold mb-2">NutriAI</h3>
+        <p>Engineered a personalized nutrition coach using YOLOv8, LLaMA 3.2 & FastAPI; achieved 91% precision.</p>
       </li>
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1"
-        data-aos="zoom-in" data-aos-delay="100"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">LeafShield</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Designed a custom CNN &amp; OpenCV pipeline to classify 12 plant diseases with 95% accuracy via TensorFlow.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-2">LeafShield</h3>
+        <p>Built a custom CNN & OpenCV pipeline to classify 12 plant diseases at 95% accuracy.</p>
       </li>
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1"
-        data-aos="zoom-in" data-aos-delay="200"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">MailMind</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Built an NLP pipeline with BERT &amp; spaCy for email summarization &amp; sentiment analysis; exposed via FastAPI.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-2">MailMind</h3>
+        <p>Developed an NLP pipeline (BERT & spaCy) for email summarization & sentiment analysis via FastAPI.</p>
       </li>
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1"
-        data-aos="zoom-in" data-aos-delay="300"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">PromptQuest</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Created a LangChain &amp; ChromaDB essay &amp; policy Q&amp;A platform with Streamlit UI.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
+        <p>Created a LangChain & ChromaDB essay & policy Q&A platform with a Streamlit interface.</p>
       </li>
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1"
-        data-aos="zoom-in" data-aos-delay="400"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">GradeGuard</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Implemented an SVM model &amp; Flask-Mail alerts to predict student performance and send progress tips.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="400">
+        <h3 class="text-xl font-bold mb-2">GradeGuard</h3>
+        <p>Implemented an SVM model & Flask-Mail alerts to predict student performance and send progress tips.</p>
       </li>
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1"
-        data-aos="zoom-in" data-aos-delay="500"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">SpendPredictor</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Forecasted personal finance with ARIMA &amp; KMeans in Flask, enabling budgeting simulations &amp; clustering.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="500">
+        <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
+        <p>Forecasted personal finance with ARIMA & KMeans in Flask, enabling budgeting simulations & clustering.</p>
       </li>
-      <li
-        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-2xl transition transform hover:-translate-y-1 col-span-full md:col-span-2 lg:col-span-1"
-        data-aos="zoom-in" data-aos-delay="600"
-      >
-        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">File Navigator</h3>
-        <p class="text-gray-700 dark:text-gray-300">
-          Developed a cross-platform CLI using Python &amp; difflib for fuzzy file search across nested structures.
-        </p>
+      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition col-span-full md:col-span-2 lg:col-span-1" data-aos="zoom-in" data-aos-delay="600">
+        <h3 class="text-xl font-bold mb-2">File Navigator</h3>
+        <p>Developed a cross-platform CLI using Python & difflib for fuzzy file search across nested structures.</p>
       </li>
     </ul>
   </section>
 
   <!-- Experience -->
   <section id="experience" class="py-16 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8 text-gray-900 dark:text-gray-100">Internship Experience</h2>
+    <h2 class="text-3xl font-semibold text-center mb-8">Internship Experience</h2>
     <div class="max-w-4xl mx-auto space-y-8">
       <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow" data-aos="fade-right">
-        <h3 class="text-2xl font-bold mb-1 text-gray-900 dark:text-gray-100">Data Engineer Intern @ S2.AI</h3>
-        <p class="italic mb-3 text-gray-700 dark:text-gray-300">Dec 2024 – Jan 2025 (Hybrid)</p>
-        <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Built and automated ETL pipelines in Python &amp; SQL for large-scale ML workflows.</li>
-          <li>Annotated over 5K samples with Roboflow &amp; LabelIMG, boosting YOLOv5 accuracy by 12%.</li>
-          <li>Developed and fine-tuned PyTorch models &amp; deployed them via FastAPI endpoints.</li>
+        <h3 class="text-2xl font-bold mb-1">Data Engineer Intern @ S2.AI</h3>
+        <p class="italic mb-3">Dec 2024 – Jan 2025 (Hybrid)</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Built/automated ETL pipelines in Python & SQL for large-scale ML workflows.</li>
+          <li>Annotated 5K+ samples with Roboflow & LabelIMG, boosting YOLOv5 accuracy by 12%.</li>
+          <li>Fine-tuned PyTorch models & deployed them via FastAPI endpoints.</li>
         </ul>
       </div>
       <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow" data-aos="fade-left">
-        <h3 class="text-2xl font-bold mb-1 text-gray-900 dark:text-gray-100">Python Developer Intern @ Pricol Ltd</h3>
-        <p class="italic mb-3 text-gray-700 dark:text-gray-300">Dec 2023 (On-site)</p>
-        <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Developed Arduino+Python RFID employee login system; reduced unauthorized access by 30%.</li>
-          <li>Built a fuzzy-search file locator CLI tool, cutting retrieval time by 40%.</li>
-          <li>Gained hands-on IoT access-monitoring experience in cluster manufacturing environments.</li>
+        <h3 class="text-2xl font-bold mb-1">Python Developer Intern @ Pricol Ltd</h3>
+        <p class="italic mb-3">Dec 2023 (On-site)</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Built Arduino+Python RFID system, cutting unauthorized access by 30%.</li>
+          <li>Created fuzzy-search file locator CLI, reducing retrieval time by 40%.</li>
+          <li>Gained hands-on IoT monitoring experience in manufacturing clusters.</li>
         </ul>
       </div>
     </div>
@@ -192,19 +131,19 @@
 
   <!-- Skills -->
   <section id="skills" class="py-16 px-6 bg-gray-100 dark:bg-gray-900" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8 text-gray-900 dark:text-gray-100">Skills</h2>
-    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700 dark:text-gray-300">
+    <h2 class="text-3xl font-semibold text-center mb-8">Skills</h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
       <div data-aos="fade-right">
-        <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">Proficient</h3>
+        <h3 class="text-2xl font-bold mb-2">Proficient</h3>
         <ul class="list-disc pl-5 space-y-1">
           <li>Python · SQL · Scikit-learn · Pandas · NumPy · Flask · FastAPI · Streamlit</li>
           <li>Git · Jupyter · PostgreSQL · MySQL</li>
         </ul>
       </div>
       <div data-aos="fade-left">
-        <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">Familiar</h3>
+        <h3 class="text-2xl font-bold mb-2">Familiar</h3>
         <ul class="list-disc pl-5 space-y-1">
-          <li>PyTorch · TensorFlow · KMeans · SVM · ARIMA · Docker</li>
+          <li>PyTorch · TensorFlow · ARIMA · KMeans · Docker</li>
           <li>LangChain · ChromaDB · OpenCV · Postman</li>
         </ul>
       </div>
@@ -213,26 +152,24 @@
 
   <!-- Education -->
   <section id="education" class="py-16 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8 text-gray-900 dark:text-gray-100">Education</h2>
-    <div class="max-w-4xl mx-auto space-y-6 text-gray-700 dark:text-gray-300">
+    <h2 class="text-3xl font-semibold text-center mb-8">Education</h2>
+    <div class="max-w-4xl mx-auto space-y-6">
       <div data-aos="fade-right">
         <h3 class="text-2xl font-bold">B.Tech – Computer Science (AI & ML), SRM IST Chennai <span class="italic">(Expected 2026, CGPA: 8.12)</span></h3>
       </div>
       <div data-aos="fade-left">
         <h3 class="text-2xl font-bold">Class XII, Velammal Matric Hr. Sec. School – 2022</h3>
-        <p>First Class (Computer Science Stream)</p>
       </div>
       <div data-aos="fade-right">
         <h3 class="text-2xl font-bold">Class X, Velammal Matric Hr. Sec. School – 2020</h3>
-        <p>First Class; 1st Prize in School Chess Tournament</p>
       </div>
     </div>
   </section>
 
   <!-- Certifications -->
   <section id="certifications" class="py-16 px-6 bg-gray-100 dark:bg-gray-900" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8 text-gray-900 dark:text-gray-100">Certifications</h2>
-    <ul class="max-w-4xl mx-auto list-disc pl-5 space-y-4 text-gray-700 dark:text-gray-300">
+    <h2 class="text-3xl font-semibold text-center mb-8">Certifications</h2>
+    <ul class="max-w-4xl mx-auto list-disc pl-5 space-y-4">
       <li>Cyber Intelligence in Robotics – MIT Square, Mar 2024 (ID: 202405CI28)</li>
       <li>AWS Cloud Practitioner – Amazon Web Services, Feb 2024</li>
       <li>Python 101 for Data Science – IBM Skills Network, Nov 2022 (ID: 705b9ff…)</li>
@@ -240,38 +177,50 @@
   </section>
 
   <!-- Contact -->
-  <footer class="py-16 px-6 bg-white dark:bg-gray-800 text-center" data-aos="fade-up">
-    <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Get in Touch</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-4">
-      <span>📧 <a href="mailto:psbhaveshsharma@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">psbhaveshsharma@gmail.com</a></span>
-      <span>｜ 📱 +91 63854 97381</span>
+  <footer id="contact" class="py-16 px-6 bg-white dark:bg-gray-800 text-center" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
+    <p class="mb-4">
+      📧 <a href="mailto:psbhaveshsharma@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">psbhaveshsharma@gmail.com</a>
+      │ 📱 +91 63854 97381
     </p>
     <div class="space-x-6">
-      <a href="https://linkedin.com/in/bhavesh-puranam" target="_blank" class="text-gray-900 dark:text-gray-100 hover:underline">LinkedIn</a>
-      <a href="https://github.com/bhxvxshh" target="_blank" class="text-gray-900 dark:text-gray-100 hover:underline">GitHub</a>
+      <a href="https://linkedin.com/in/bhavesh-puranam" target="_blank" class="hover:underline">LinkedIn</a>
+      <a href="https://github.com/bhxvxshh" target="_blank" class="hover:underline">GitHub</a>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script> AOS.init({ duration: 800, once: true }); </script>
   <script>
+    AOS.init({ duration: 800, once: true });
+
     // Typewriter effect
-    const txt = "Hi, I’m Bhavesh Puranam.";
-    let i = 0;
+    const phrase = "Hi, I’m Bhavesh Puranam.";
+    const el = document.getElementById("typed-name");
+    let idx = 0;
     function type() {
-      if (i < txt.length) {
-        document.getElementById("typewriter").textContent += txt.charAt(i++);
+      if (idx < phrase.length) {
+        el.textContent += phrase[idx++];
         setTimeout(type, 100);
       }
     }
     window.addEventListener("load", type);
 
+    // About panel toggle
+    const panel = document.getElementById("about-panel");
+    el.addEventListener("click", () => {
+      panel.classList.toggle("opacity-0");
+      panel.classList.toggle("pointer-events-none");
+    });
+    document.getElementById("about-close").addEventListener("click", () => {
+      panel.classList.add("opacity-0", "pointer-events-none");
+    });
+
     // Dark-mode toggle
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
-        matchMedia("(prefers-color-scheme: dark)").matches)
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
     }
