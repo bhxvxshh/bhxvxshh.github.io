@@ -2,236 +2,265 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Bhavesh Puranam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bhavesh Puranam • Portfolio</title>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
 
-  <!-- Tailwind CSS & Dark Mode Config -->
-  <script>
-    tailwind.config = { darkMode: 'class' }
-  </script>
+  <!-- Tailwind CSS + Dark Mode -->
+  <script>tailwind.config = { darkMode: 'class' }</script>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS for scroll reveals -->
+  <!-- AOS for scroll animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; }
-    /* About panel transitions */
-    #about-panel {
-      transition: opacity 0.4s ease, pointer-events 0.4s ease;
+    .blob {
+      position: absolute; top: 0; right: 0;
+      width: 400px; height: 400px;
+      background: linear-gradient(135deg, #4f46e5, #ec4899);
+      clip-path: polygon(50% 0%,100% 35%,80% 100%,20% 100%,0% 35%);
+      filter: blur(80px); z-index: -1;
     }
   </style>
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
   <!-- Dark Mode Toggle -->
   <button id="theme-toggle"
-          class="fixed top-4 right-4 z-50 p-2 bg-gray-200 dark:bg-gray-700 rounded-full shadow"
-          aria-label="Toggle Dark Mode">🌙/☀️</button>
+          class="fixed top-4 right-4 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg z-50">
+    🌙/☀️
+  </button>
 
-  <!-- Hero: white bg, typewriter -->
-  <header id="hero" class="flex items-center justify-center h-screen bg-white dark:bg-gray-900">
-    <h1 id="typed-name"
-        class="text-5xl md:text-6xl font-bold cursor-pointer select-none text-gray-900 dark:text-white"
-        title="Click to learn more"></h1>
-  </header>
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 left-0 bg-white dark:bg-gray-800 bg-opacity-90 backdrop-blur z-40">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">BP</a>
+      <ul class="hidden md:flex space-x-8 text-gray-700 dark:text-gray-300">
+        <li><a href="#hero" class="hover:text-indigo-600">Home</a></li>
+        <li><a href="#about" class="hover:text-indigo-600">About</a></li>
+        <li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
+        <li><a href="#experience" class="hover:text-indigo-600">Experience</a></li>
+        <li><a href="#education" class="hover:text-indigo-600">Education</a></li>
+        <li><a href="#contact" class="hover:text-indigo-600">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden text-2xl">☰</button>
+    </div>
+    <div id="nav-menu" class="md:hidden bg-white dark:bg-gray-800 px-6 pb-4 hidden">
+      <a href="#hero" class="block py-2">Home</a>
+      <a href="#about" class="block py-2">About</a>
+      <a href="#projects" class="block py-2">Projects</a>
+      <a href="#experience" class="block py-2">Experience</a>
+      <a href="#education" class="block py-2">Education</a>
+      <a href="#contact" class="block py-2">Contact</a>
+    </div>
+  </nav>
 
-  <!-- About Me Overlay -->
-  <div id="about-panel"
-       class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0 pointer-events-none">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full p-8 flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6">
-      <img src="Bp.jpg" alt="Bhavesh Puranam"
-           class="w-32 h-32 rounded-full object-cover shadow-lg"/>
-      <div class="text-gray-800 dark:text-gray-200 space-y-4">
-        <h2 class="text-2xl font-semibold">About Me</h2>
-        <p>
-          I’m <strong>Bhavesh Puranam</strong>, pursuing B.Tech in Computer Science (AI &amp; ML) at
-          SRM Institute of Science &amp; Technology. I’ve interned at S2.AI &amp; Pricol Ltd,
-          building ETL pipelines, annotating 5K+ samples, deploying ML models with FastAPI,
-          and crafting IoT solutions.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">Python</span>
-          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">SQL</span>
-          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">FastAPI</span>
-          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">Streamlit</span>
-          <span class="px-3 py-1 bg-blue-100 dark:bg-gray-700 rounded-full text-blue-800 dark:text-gray-200">Docker</span>
-        </div>
-        <button id="about-close"
-                class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
-          Close
-        </button>
+  <!-- Hero -->
+  <header id="hero" class="relative flex items-center justify-center h-screen pt-20 overflow-hidden">
+    <div class="blob"></div>
+    <div class="max-w-4xl text-center px-4" data-aos="fade-up">
+      <h1 id="typewriter" class="text-5xl md:text-6xl font-extrabold mb-4"></h1>
+      <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+        Data Engineer &amp; AI/ML Enthusiast<br/>
+        Building data pipelines, training models & deploying full-stack ML apps.
+      </p>
+      <a href="#projects"
+         class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+        See My Work ↓
+      </a>
+    </div>
+    <div class="absolute bottom-10 right-10">
+      <div class="relative w-48 h-48">
+        <div class="blob w-56 h-56" style="filter: blur(40px); opacity:.6;"></div>
+        <img src="Bp.jpg" alt="Bhavesh Puranam"
+             class="relative w-48 h-48 object-cover rounded-full shadow-2xl"/>
       </div>
     </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="py-20 px-6 bg-white dark:bg-gray-800" data-aos="fade-right">
+    <div class="max-w-3xl mx-auto space-y-6">
+      <h2 class="text-3xl font-semibold text-center">About Me</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        I’m <strong>Bhavesh Puranam</strong>, pursuing B.Tech (AI &amp; ML) at SRM IST Chennai.
+        I interned at S2.AI &amp; Pricol Ltd—built ETL pipelines, annotated 5K+ samples,
+        trained & deployed ML models via FastAPI, and developed IoT/RFID solutions.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-700 rounded-full text-indigo-800 dark:text-gray-200">Python</span>
+        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-700 rounded-full text-indigo-800 dark:text-gray-200">SQL</span>
+        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-700 rounded-full text-indigo-800 dark:text-gray-200">FastAPI</span>
+        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-700 rounded-full text-indigo-800 dark:text-gray-200">Docker</span>
+        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-700 rounded-full text-indigo-800 dark:text-gray-200">Streamlit</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services marquee -->
+  <div class="py-4 bg-indigo-600 text-white overflow-hidden">
+    <div class="flex animate-marquee whitespace-nowrap gap-12 px-12">
+      <span>Data Engineering</span>
+      <span>Machine Learning</span>
+      <span>Web Development</span>
+      <span>Full-stack ML Apps</span>
+      <span>IoT & RFID</span>
+      <span>Data Visualization</span>
+    </div>
   </div>
+  <style>
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .animate-marquee { animation: marquee 15s linear infinite; }
+  </style>
 
   <!-- Projects -->
-  <section id="projects" class="py-16 px-6 bg-gray-50 dark:bg-gray-800" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in">
-        <h3 class="text-xl font-bold mb-2">NutriAI</h3>
-        <p>Engineered a personalized nutrition coach using YOLOv8, LLaMA 3.2 & FastAPI; achieved 91% precision.</p>
-      </li>
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="100">
-        <h3 class="text-xl font-bold mb-2">LeafShield</h3>
-        <p>Built a custom CNN & OpenCV pipeline to classify 12 plant diseases at 95% accuracy.</p>
-      </li>
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="200">
-        <h3 class="text-xl font-bold mb-2">MailMind</h3>
-        <p>Developed an NLP pipeline (BERT & spaCy) for email summarization & sentiment analysis via FastAPI.</p>
-      </li>
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="300">
-        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
-        <p>Created a LangChain & ChromaDB essay & policy Q&A platform with a Streamlit interface.</p>
-      </li>
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="400">
-        <h3 class="text-xl font-bold mb-2">GradeGuard</h3>
-        <p>Implemented an SVM model & Flask-Mail alerts to predict student performance and send progress tips.</p>
-      </li>
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="500">
-        <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
-        <p>Forecasted personal finance with ARIMA & KMeans in Flask, enabling budgeting simulations & clustering.</p>
-      </li>
-      <li class="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow hover:shadow-lg transition col-span-full md:col-span-2 lg:col-span-1" data-aos="zoom-in" data-aos-delay="600">
-        <h3 class="text-xl font-bold mb-2">File Navigator</h3>
-        <p>Developed a cross-platform CLI using Python & difflib for fuzzy file search across nested structures.</p>
-      </li>
-    </ul>
+  <section id="projects" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Example card -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
+          <h3 class="text-xl font-bold mb-2">NutriAI</h3>
+          <p>Personalized nutrition coach using YOLOv8, LLaMA & FastAPI—91% precision.</p>
+        </div>
+        <!-- Repeat for each project (LeafShield, MailMind, PromptQuest, GradeGuard, SpendPredictor) -->
+      </div>
+    </div>
   </section>
 
   <!-- Experience -->
-  <section id="experience" class="py-16 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8">Internship Experience</h2>
-    <div class="max-w-4xl mx-auto space-y-8">
-      <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow" data-aos="fade-right">
-        <h3 class="text-2xl font-bold mb-1">Data Engineer Intern @ S2.AI</h3>
-        <p class="italic mb-3">Dec 2024 – Jan 2025 (Hybrid)</p>
-        <ul class="list-disc pl-5 space-y-2">
-          <li>Built/automated ETL pipelines in Python & SQL for large-scale ML workflows.</li>
-          <li>Annotated 5K+ samples with Roboflow & LabelIMG, boosting YOLOv5 accuracy by 12%.</li>
-          <li>Fine-tuned PyTorch models & deployed them via FastAPI endpoints.</li>
-        </ul>
-      </div>
-      <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow" data-aos="fade-left">
-        <h3 class="text-2xl font-bold mb-1">Python Developer Intern @ Pricol Ltd</h3>
-        <p class="italic mb-3">Dec 2023 (On-site)</p>
-        <ul class="list-disc pl-5 space-y-2">
-          <li>Built Arduino+Python RFID system, cutting unauthorized access by 30%.</li>
-          <li>Created fuzzy-search file locator CLI, reducing retrieval time by 40%.</li>
-          <li>Gained hands-on IoT monitoring experience in manufacturing clusters.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="py-16 px-6 bg-gray-100 dark:bg-gray-900" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8">Skills</h2>
-    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div data-aos="fade-right">
-        <h3 class="text-2xl font-bold mb-2">Proficient</h3>
-        <ul class="list-disc pl-5 space-y-1">
-          <li>Python · SQL · Scikit-learn · Pandas · NumPy · Flask · FastAPI · Streamlit</li>
-          <li>Git · Jupyter · PostgreSQL · MySQL</li>
-        </ul>
-      </div>
-      <div data-aos="fade-left">
-        <h3 class="text-2xl font-bold mb-2">Familiar</h3>
-        <ul class="list-disc pl-5 space-y-1">
-          <li>PyTorch · TensorFlow · ARIMA · KMeans · Docker</li>
-          <li>LangChain · ChromaDB · OpenCV · Postman</li>
-        </ul>
+  <section id="experience" class="py-20 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-12">Internship Experience</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
+          <h3 class="text-xl font-bold mb-1">Data Engineer Intern @ S2.AI</h3>
+          <p class="italic text-sm mb-3">Dec 2024 – Jan 2025 (Hybrid)</p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Built & automated ETL pipelines (Python & SQL) for large-scale ML workflows.</li>
+            <li>Annotated 5K+ samples (Roboflow & LabelIMG), boosting YOLOv5 accuracy by 12%.</li>
+            <li>Fine-tuned PyTorch models & deployed via FastAPI endpoints.</li>
+          </ul>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-1">Python Dev Intern @ Pricol Ltd</h3>
+          <p class="italic text-sm mb-3">Dec 2023 (On-site)</p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Built Arduino+Python RFID login system; reduced unauthorized access by 30%.</li>
+            <li>Created fuzzy-search file locator CLI; cut retrieval time by 40%.</li>
+            <li>Gained hands-on IoT monitoring in manufacturing clusters.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Education -->
-  <section id="education" class="py-16 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8">Education</h2>
-    <div class="max-w-4xl mx-auto space-y-6">
-      <div data-aos="fade-right">
-        <h3 class="text-2xl font-bold">B.Tech – Computer Science (AI & ML), SRM IST Chennai <span class="italic">(Expected 2026, CGPA: 8.12)</span></h3>
-      </div>
-      <div data-aos="fade-left">
-        <h3 class="text-2xl font-bold">Class XII, Velammal Matric Hr. Sec. School – 2022</h3>
-      </div>
-      <div data-aos="fade-right">
-        <h3 class="text-2xl font-bold">Class X, Velammal Matric Hr. Sec. School – 2020</h3>
+  <section id="education" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-12">Education</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
+          <h3 class="text-xl font-bold mb-1">B.Tech CSE (AI &amp; ML), SRM IST Chennai</h3>
+          <p class="italic">2022 – 2026 (CGPA 8.12)</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-1">Class XII, Velammal Matric Hr. Sec. School</h3>
+          <p class="italic">First Class (Computer Sci.) • 2022</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-1">Class X, Velammal Matric Hr. Sec. School</h3>
+          <p class="italic">First Class; 1st Prize in School Chess • 2020</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Certifications -->
-  <section id="certifications" class="py-16 px-6 bg-gray-100 dark:bg-gray-900" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold text-center mb-8">Certifications</h2>
-    <ul class="max-w-4xl mx-auto list-disc pl-5 space-y-4">
-      <li>Cyber Intelligence in Robotics – MIT Square, Mar 2024 (ID: 202405CI28)</li>
-      <li>AWS Cloud Practitioner – Amazon Web Services, Feb 2024</li>
-      <li>Python 101 for Data Science – IBM Skills Network, Nov 2022 (ID: 705b9ff…)</li>
-    </ul>
+  <section id="certifications" class="py-20 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <h2 class="text-3xl font-semibold text-center mb-6">Certifications</h2>
+      <ul class="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
+        <li>Cyber Intelligence in Robotics – MIT Square, Mar 2024 (ID: 202405CI28)</li>
+        <li>AWS Cloud Practitioner – Amazon Web Services, Feb 2024</li>
+        <li>Python 101 for Data Science – IBM Skills Network, Nov 2022 (ID: 705b9ff…)</li>
+      </ul>
+    </div>
   </section>
 
-  <!-- Contact -->
-  <footer id="contact" class="py-16 px-6 bg-white dark:bg-gray-800 text-center" data-aos="fade-up">
-    <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
-    <p class="mb-4">
-      📧 <a href="mailto:psbhaveshsharma@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">psbhaveshsharma@gmail.com</a>
-      │ 📱 +91 63854 97381
-    </p>
-    <div class="space-x-6">
-      <a href="https://linkedin.com/in/bhavesh-puranam" target="_blank" class="hover:underline">LinkedIn</a>
-      <a href="https://github.com/bhxvxshh" target="_blank" class="hover:underline">GitHub</a>
+  <!-- Contact: Map + Form -->
+  <section id="contact" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Embedded Map -->
+      <div class="rounded-2xl overflow-hidden shadow-lg">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!YOUR_MAP_EMBED_CODE"
+          class="w-full h-80"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+      <!-- Contact Form -->
+      <form action="https://formspree.io/f/your-form-id" method="POST"
+            class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg space-y-4">
+        <h2 class="text-2xl font-semibold text-center">Get In Touch</h2>
+        <div>
+          <label class="block">Name</label>
+          <input name="name" required
+                 class="w-full mt-1 p-2 border rounded bg-gray-50 dark:bg-gray-700"/>
+        </div>
+        <div>
+          <label class="block">Email</label>
+          <input type="email" name="email" required
+                 class="w-full mt-1 p-2 border rounded bg-gray-50 dark:bg-gray-700"/>
+        </div>
+        <div>
+          <label class="block">Message</label>
+          <textarea name="message" rows="4" required
+                    class="w-full mt-1 p-2 border rounded bg-gray-50 dark:bg-gray-700"></textarea>
+        </div>
+        <button type="submit"
+                class="w-full py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">
+          Send Message
+        </button>
+      </form>
     </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center text-gray-600 dark:text-gray-400">
+    © 2025 Bhavesh Puranam
   </footer>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 700, once: true });
 
-    // Typewriter effect
-    const phrase = "Hi, I’m Bhavesh Puranam.";
-    const el = document.getElementById("typed-name");
-    let idx = 0;
-    function type() {
-      if (idx < phrase.length) {
-        el.textContent += phrase[idx++];
-        setTimeout(type, 100);
-      }
-    }
-    window.addEventListener("load", type);
+    // Typewriter
+    const txt = "Hi, I’m Bhavesh Puranam.";
+    let pos = 0;
+    const tgt = document.getElementById("typewriter");
+    (function type(){ if(pos<txt.length) tgt.textContent+=txt[pos++], setTimeout(type,100); })();
 
-    // About panel toggle
-    const panel = document.getElementById("about-panel");
-    el.addEventListener("click", () => {
-      panel.classList.toggle("opacity-0");
-      panel.classList.toggle("pointer-events-none");
-    });
-    document.getElementById("about-close").addEventListener("click", () => {
-      panel.classList.add("opacity-0", "pointer-events-none");
+    // Dark Mode
+    const toggle = document.getElementById("theme-toggle");
+    if(localStorage.theme==='dark'||(!('theme' in localStorage)&&
+       window.matchMedia('(prefers-color-scheme: dark)').matches))
+      document.documentElement.classList.add('dark');
+    toggle.addEventListener('click',()=>{
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme=document.documentElement.classList.contains('dark')?'dark':'light';
     });
 
-    // Dark-mode toggle
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    }
-    document
-      .getElementById("theme-toggle")
-      .addEventListener("click", () => {
-        document.documentElement.classList.toggle("dark");
-        localStorage.theme = document.documentElement.classList.contains("dark")
-          ? "dark"
-          : "light";
-      });
+    // Mobile nav
+    document.getElementById('nav-toggle')
+      .addEventListener('click',()=>document.getElementById('nav-menu').classList.toggle('hidden'));
   </script>
 </body>
 </html>
