@@ -5,351 +5,235 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bhavesh Puranam • Portfolio</title>
 
-  <!-- Fonts & Tailwind -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <script>tailwind.config={darkMode:'class'}</script>
+  <!-- Tailwind & Font -->
+  <script>tailwind.config={darkMode:false}</script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>body{font-family:'Poppins',sans-serif;margin:0;}html,body,#fullpage{height:100%;overflow:hidden;}</style>
 
-  <!-- AOS for scroll animations -->
+  <!-- fullPage.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.css" integrity="sha512-…" crossorigin="anonymous"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.js" integrity="sha512-…" crossorigin="anonymous"></script>
+
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 
-  <!-- Particles.js hero background -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
 
-  <style>
-    body { font-family:'Poppins',sans-serif; }
-    html { scroll-behavior:smooth; }
-    #particles-js { position:absolute; inset:0; z-index:0; }
-  </style>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="bg-white text-gray-900">
 
-  <!-- NAV -->
-  <nav class="fixed w-full bg-white/50 dark:bg-gray-900/50 backdrop-blur z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-      <div class="text-2xl font-bold text-indigo-600">BP</div>
-      <ul class="hidden md:flex space-x-6 text-gray-700 dark:text-gray-300">
-        <li><a href="#home"     class="hover:text-indigo-600">Home</a></li>
-        <li><a href="#about"    class="hover:text-indigo-600">About</a></li>
-        <li><a href="#skills"   class="hover:text-indigo-600">Skills</a></li>
-        <li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
-        <li><a href="#education"class="hover:text-indigo-600">Education</a></li>
-        <li><a href="#timeline" class="hover:text-indigo-600">Timeline</a></li>
-        <li><a href="#contact"  class="hover:text-indigo-600">Contact</a></li>
-      </ul>
-      <button id="nav-toggle" class="md:hidden text-2xl">☰</button>
-    </div>
-    <div id="nav-menu" class="md:hidden bg-white dark:bg-gray-900 px-6 pb-4 hidden space-y-2">
-      <a href="#home"     class="block py-2">Home</a>
-      <a href="#about"    class="block py-2">About</a>
-      <a href="#skills"   class="block py-2">Skills</a>
-      <a href="#projects" class="block py-2">Projects</a>
-      <a href="#education"class="block py-2">Education</a>
-      <a href="#timeline" class="block py-2">Timeline</a>
-      <a href="#contact"  class="block py-2">Contact</a>
-    </div>
-  </nav>
+  <!-- INTRO: only your name -->
+  <div id="intro" class="flex items-center justify-center h-screen bg-white">
+    <h1 id="intro-title" class="text-6xl font-extrabold cursor-pointer text-indigo-600"></h1>
+  </div>
 
-  <!-- HERO -->
-  <section id="home" class="relative h-screen overflow-hidden flex items-center justify-between px-6 md:px-20">
-    <div id="particles-js"></div>
-    <div class="z-10 max-w-lg space-y-4" data-aos="fade-right">
-      <h3 class="text-indigo-400 font-medium">Hello!</h3>
-      <h1 id="hero-title" class="text-5xl md:text-6xl font-extrabold leading-tight"></h1>
-      <p class="text-gray-700 dark:text-gray-300">
-        Data Engineer & AI/ML Enthusiast<br/>
-        building end-to-end intelligent systems from data ingestion to model serving.
-      </p>
-      <div class="flex gap-4">
-        <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Contact Me</a>
-        <a href="#about"   class="px-6 py-3 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition">About Me</a>
-      </div>
-    </div>
-    <div class="z-10">
-      <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl" data-aos="fade-left">
-        <img src="Bp.jpg" alt="Bhavesh" class="object-cover w-full h-full"/>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="py-16 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
-    <div class="max-w-3xl mx-auto text-center space-y-4">
-      <h2 class="text-3xl font-semibold">About Me</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+  <!-- FULLPAGE WRAPPER -->
+  <div id="fullpage" style="display:none;">
+    <!-- About Section -->
+    <section class="section flex flex-col items-center justify-center px-6">
+      <h2 class="text-4xl font-semibold mb-4" data-aos="fade-down">About Me</h2>
+      <p class="max-w-2xl text-center text-gray-700 leading-relaxed" data-aos="fade-up">
         Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology.
         Passionate about solving real-world problems through innovative solutions in AI, data science, and web development.
         Proficient in building intelligent systems, interactive applications, and scalable solutions.
-        Always learning, always growing! 🚀💡
-        Let’s connect, collaborate, and create something amazing together! 🤝
+        Always learning, always growing! 🚀💡 Let's connect, collaborate, and create something amazing together! 🤝
       </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="py-16 px-6" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto text-center mb-8">
-      <h2 class="text-3xl font-semibold">Skills</h2>
-    </div>
-    <div class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-      <!-- repeat for each skill -->
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in">
-        <p class="font-medium">Python</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="50">
-        <p class="font-medium">SQL</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="100">
-        <p class="font-medium">Scikit-learn</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="150">
-        <p class="font-medium">Pandas</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="200">
-        <p class="font-medium">NumPy</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="250">
-        <p class="font-medium">Flask</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="300">
-        <p class="font-medium">FastAPI</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="350">
-        <p class="font-medium">Streamlit</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="400">
-        <p class="font-medium">Git</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="450">
-        <p class="font-medium">Jupyter</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="500">
-        <p class="font-medium">PostgreSQL</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="550">
-        <p class="font-medium">MySQL</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="600">
-        <p class="font-medium">PyTorch</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="650">
-        <p class="font-medium">TensorFlow</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="700">
-        <p class="font-medium">KMeans</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="750">
-        <p class="font-medium">SVM</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="800">
-        <p class="font-medium">ARIMA</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="850">
-        <p class="font-medium">Docker</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="900">
-        <p class="font-medium">LangChain</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="950">
-        <p class="font-medium">ChromaDB</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="1000">
-        <p class="font-medium">OpenCV</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="1050">
-        <p class="font-medium">Postman</p>
-      </div>
-      <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="1100">
-        <p class="font-medium">ML Algorithms</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="py-16 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto text-center mb-8">
-      <h2 class="text-3xl font-semibold">Projects</h2>
-      <p class="text-gray-700 dark:text-gray-300">A showcase of my AI/ML & full-stack work.</p>
-    </div>
-    <div class="max-w-6xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <!-- NutriAI -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left">
-        <h3 class="text-xl font-bold mb-2">NutriAI</h3>
-        <p>Engineered AI-Driven personalized nutrition coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI; achieved 91% precision & 89% F1-score.</p>
-      </div>
-      <!-- LeafShield -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="100">
-        <h3 class="text-xl font-bold mb-2">LeafShield</h3>
-        <p>Designed custom CNN & OpenCV pipeline to classify 12 plant diseases with 95%+ accuracy via TensorFlow.</p>
-      </div>
-      <!-- MailMind -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="200">
-        <h3 class="text-xl font-bold mb-2">MailMind</h3>
-        <p>Built NLP pipeline with BERT & spaCy for email summarization & sentiment analysis; exposed via FastAPI & Streamlit.</p>
-      </div>
-      <!-- PromptQuest -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="300">
-        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
-        <p>Created LangChain + ChromaDB Q&A platform with Ollama LLMs & Streamlit UI.</p>
-      </div>
-      <!-- GradeGuard -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="400">
-        <h3 class="text-xl font-bold mb-2">GradeGuard</h3>
-        <p>Implemented SVM model & Flask-Mail alerts to predict student performance & send progress tips.</p>
-      </div>
-      <!-- SpendPredictor -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="500">
-        <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
-        <p>Forecasted personal finance with ARIMA & KMeans in Flask, enabling budgeting simulations & clustering.</p>
-      </div>
-      <!-- File Navigator -->
-      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="flip-left" data-aos-delay="600">
-        <h3 class="text-xl font-bold mb-2">File Navigator</h3>
-        <p>Built cross-platform CLI with Python & difflib for fuzzy file search across nested structures.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education" class="py-16 px-6" data-aos="fade-up">
-    <div class="max-w-5xl mx-auto text-center mb-8">
-      <h2 class="text-3xl font-semibold">Education</h2>
-    </div>
-    <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
-      <div class="p-6 bg-indigo-50 dark:bg-indigo-900 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in">
-        <h3 class="text-lg font-bold">B.Tech in CSE (AI & ML)</h3>
-        <p class="italic">SRM IST Chennai • 2022–2026</p>
-        <p class="mt-2">CGPA: 8.12</p>
-      </div>
-      <div class="p-6 bg-indigo-50 dark:bg-indigo-900 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in" data-aos-delay="100">
-        <h3 class="text-lg font-bold">Class XII, CS Stream</h3>
-        <p class="italic">Velammal Matric Hr. Sec. School • 2022</p>
-        <p class="mt-2">First Class</p>
-      </div>
-      <div class="p-6 bg-indigo-50 dark:bg-indigo-900 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in" data-aos-delay="200">
-        <h3 class="text-lg font-bold">Class X</h3>
-        <p class="italic">Velammal Matric Hr. Sec. School • 2020</p>
-        <p class="mt-2">First Class; Chess Tournament Winner</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TIMELINE -->
-  <section id="timeline" class="py-16 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
-    <div class="max-w-4xl mx-auto text-center mb-8">
-      <h2 class="text-3xl font-semibold">Complete Roadmap & Timeline</h2>
-    </div>
-    <div class="relative max-w-4xl mx-auto">
-      <div class="absolute top-0 left-1/2 w-1 h-full bg-indigo-600"></div>
-      <!-- Class X -->
-      <div class="flex mb-12">
-        <div class="w-1/2 pr-8 text-right">
-          <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">
-            🎓
-          </div>
-          <h3 class="text-xl font-bold mt-2">Class X Completed</h3>
-          <p class="italic">2020</p>
+    <!-- Skills Section -->
+    <section class="section px-6 py-12">
+      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-down">Skills</h2>
+      <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <!-- Python -->
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left">
+          <i class="fab fa-python text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">Python</span>
         </div>
-        <div class="w-1/2"></div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="50">
+          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">SQL</span>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="100">
+          <i class="fas fa-brain text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">Scikit-learn</span>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="150">
+          <i class="fas fa-chart-line text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">Pandas</span>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="200">
+          <i class="fas fa-cube text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">NumPy</span>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="250">
+          <i class="fas fa-flask text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">Flask</span>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="300">
+          <i class="fas fa-bolt text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">FastAPI</span>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="350">
+          <i class="fas fa-stream text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium">Streamlit</span>
+        </div>
+        <!-- add the rest similarly... -->
       </div>
-      <!-- Class XII -->
-      <div class="flex mb-12">
-        <div class="w-1/2"></div>
-        <div class="w-1/2 pl-8 text-left">
-          <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">
-            🎓
-          </div>
-          <h3 class="text-xl font-bold mt-2">Class XII Completed</h3>
-          <p class="italic">2022</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section px-6 py-12 bg-gray-50">
+      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-down">Projects</h2>
+      <div class="max-w-6xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- NutriAI -->
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in">
+          <h3 class="text-xl font-bold mb-2">NutriAI</h3>
+          <p>Engineered AI-Driven personalized nutrition coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI; achieved 91% precision & 89% F1-score.</p>
+        </div>
+        <!-- LeafShield -->
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-2">LeafShield</h3>
+          <p>Designed custom CNN & OpenCV pipeline to classify 12 plant diseases with 95%+ accuracy via TensorFlow.</p>
+        </div>
+        <!-- MailMind -->
+        <div class="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-2">MailMind</h3>
+          <p>Built NLP pipeline with BERT & spaCy for real-time email summarization & sentiment analysis; exposed via FastAPI & Streamlit.</p>
+        </div>
+        <!-- continue with your other cards... -->
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section px-6 py-12">
+      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-down">Education</h2>
+      <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+        <div class="p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="fade-right">
+          <h3 class="font-bold">B.Tech in CSE (AI & ML)</h3>
+          <p class="italic">SRM IST Chennai • 2022–2026</p>
+          <p>CGPA 8.12</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="fade-up">
+          <h3 class="font-bold">Class XII, CS Stream</h3>
+          <p class="italic">Velammal Matric Hr. Sec. School • 2022</p>
+          <p>First Class</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="fade-left">
+          <h3 class="font-bold">Class X</h3>
+          <p class="italic">Velammal Matric Hr. Sec. School • 2020</p>
+          <p>First Class; 1st Prize in School Chess Tournament</p>
         </div>
       </div>
-      <!-- B.Tech Start -->
-      <div class="flex mb-12">
-        <div class="w-1/2 pr-8 text-right">
-          <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">
-            🎓
-          </div>
-          <h3 class="text-xl font-bold mt-2">B.Tech Begins</h3>
-          <p class="italic">2022</p>
-        </div>
-        <div class="w-1/2"></div>
-      </div>
-      <!-- Pricol Intern -->
-      <div class="flex mb-12">
-        <div class="w-1/2"></div>
-        <div class="w-1/2 pl-8 text-left">
-          <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">
-            👨‍💻
-          </div>
-          <h3 class="text-xl font-bold mt-2">Python Dev Intern @ Pricol Ltd</h3>
-          <p class="italic">Dec 2023</p>
-        </div>
-      </div>
-      <!-- S2.AI Intern -->
-      <div class="flex">
-        <div class="w-1/2 pr-8 text-right">
-          <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">
-            👨‍💻
-          </div>
-          <h3 class="text-xl font-bold mt-2">Data Engineer Intern @ S2.AI</h3>
-          <p class="italic">Dec 2024–Jan 2025</p>
-        </div>
-        <div class="w-1/2"></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-16 px-6" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto grid gap-8 lg:grid-cols-2">
-      <!-- Map -->
-      <div class="rounded-2xl overflow-hidden shadow-lg">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." 
-                class="w-full h-full min-h-[300px]" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <!-- Timeline Section -->
+    <section class="section px-6 py-12 bg-gray-50">
+      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-up">Timeline</h2>
+      <div class="relative max-w-4xl mx-auto">
+        <div class="absolute top-0 left-1/2 w-1 h-full bg-indigo-600"></div>
+        <!-- Class X -->
+        <div class="flex mb-12" data-aos="fade-right">
+          <div class="w-1/2 pr-8 text-right">
+            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">🎓</div>
+            <h3 class="font-bold mt-2">Class X Completed</h3>
+            <p class="italic">2020</p>
+          </div>
+          <div class="w-1/2"></div>
+        </div>
+        <!-- Class XII -->
+        <div class="flex mb-12" data-aos="fade-left">
+          <div class="w-1/2"></div>
+          <div class="w-1/2 pl-8 text-left">
+            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">🎓</div>
+            <h3 class="font-bold mt-2">Class XII Completed</h3>
+            <p class="italic">2022</p>
+          </div>
+        </div>
+        <!-- B.Tech start -->
+        <div class="flex mb-12" data-aos="fade-right">
+          <div class="w-1/2 pr-8 text-right">
+            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">🎓</div>
+            <h3 class="font-bold mt-2">B.Tech Begins</h3>
+            <p class="italic">2022</p>
+          </div>
+          <div class="w-1/2"></div>
+        </div>
+        <!-- Pricol Intern -->
+        <div class="flex mb-12" data-aos="fade-left">
+          <div class="w-1/2"></div>
+          <div class="w-1/2 pl-8 text-left">
+            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">💼</div>
+            <h3 class="font-bold mt-2">Python Dev Intern @ Pricol Ltd</h3>
+            <p class="italic">Dec 2023</p>
+          </div>
+        </div>
+        <!-- S2.AI Intern -->
+        <div class="flex" data-aos="fade-right">
+          <div class="w-1/2 pr-8 text-right">
+            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">💼</div>
+            <h3 class="font-bold mt-2">Data Engineer Intern @ S2.AI</h3>
+            <p class="italic">Dec 2024 – Jan 2025</p>
+          </div>
+          <div class="w-1/2"></div>
+        </div>
       </div>
-      <!-- Form -->
-      <form action="https://formspree.io/f/your-form-id" method="POST"
-            class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg space-y-4">
-        <h2 class="text-2xl font-semibold text-center mb-4">Get In Touch</h2>
-        <input name="name"    placeholder="Name" required class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"/>
-        <input name="email"   type="email" placeholder="Email" required class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"/>
-        <input name="phone"   placeholder="Phone" class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"/>
-        <textarea name="message" rows="4" placeholder="Message"
-                  class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"></textarea>
-        <button type="submit"
-                class="w-full py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">
-          Submit
-        </button>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="py-8 text-center text-gray-600 dark:text-gray-400">
-    © 2025 Bhavesh Puranam
-  </footer>
+    <!-- Contact Section -->
+    <section class="section px-6 py-12">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
+        <!-- Map -->
+        <div class="rounded-2xl overflow-hidden shadow-lg" data-aos="fade-right">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." 
+                  class="w-full h-80" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <!-- Form -->
+        <form action="https://formspree.io/f/your-form-id" method="POST"
+              class="bg-white p-8 rounded-2xl shadow-lg space-y-4" data-aos="fade-left">
+          <h2 class="text-2xl font-semibold text-center">Get In Touch</h2>
+          <input name="name"    placeholder="Name"    required class="w-full p-3 bg-gray-100 rounded"/>
+          <input name="email"   placeholder="Email"   required class="w-full p-3 bg-gray-100 rounded"/>
+          <input name="phone"   placeholder="Phone"        class="w-full p-3 bg-gray-100 rounded"/>
+          <textarea name="message" rows="4" placeholder="Message"
+                    class="w-full p-3 bg-gray-100 rounded"></textarea>
+          <button type="submit" class="w-full py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+            Submit
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
 
   <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 600, once: true });
+    // Initialize AOS
+    AOS.init({ once:true });
 
-    // Typewriter
-    const txt = "I’m Bhavesh Puranam.";
-    let i = 0, el = document.getElementById("hero-title");
+    // Typewriter intro
+    const txt="I’m Bhavesh Puranam."; let idx=0;
+    const el=document.getElementById("intro-title");
     (function type(){
-      if(i<txt.length) el.textContent += txt[i++], setTimeout(type,100);
+      if(idx<txt.length) el.textContent+=txt[idx++], setTimeout(type,100);
     })();
 
-    // Particles.js
-    particlesJS("particles-js", {
-      particles:{ number:{value:80}, size:{value:3}, move:{speed:1}, line_linked:{enable:false} },
-      interactivity:{ events:{ onhover:{enable:true,mode:"repulse"} } }
+    // On click name → hide intro & start fullPage
+    el.addEventListener("click",()=>{
+      document.getElementById("intro").style.opacity=0;
+      setTimeout(()=>{
+        document.getElementById("intro").style.display="none";
+        document.getElementById("fullpage").style.display="block";
+        new fullpage('#fullpage',{
+          autoScrolling:true,
+          navigation:true,
+          anchors:['about','skills','projects','education','timeline','contact'],
+          navigationPosition:'right'
+        });
+      },600);
     });
-
-    // Mobile nav
-    document.getElementById("nav-toggle")
-      .addEventListener("click", ()=> document.getElementById("nav-menu").classList.toggle("hidden"));
   </script>
 </body>
 </html>
+    
