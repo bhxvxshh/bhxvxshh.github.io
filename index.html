@@ -1,239 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bhavesh Puranam • Portfolio</title>
 
-  <!-- Tailwind & Font -->
-  <script>tailwind.config={darkMode:false}</script>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <style>body{font-family:'Poppins',sans-serif;margin:0;}html,body,#fullpage{height:100%;overflow:hidden;}</style>
-
-  <!-- fullPage.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.css" integrity="sha512-…" crossorigin="anonymous"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.js" integrity="sha512-…" crossorigin="anonymous"></script>
-
-  <!-- AOS -->
+  <!-- AOS for scroll animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <!-- fullPage.js -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.css"
+  />
+  <!-- Font Awesome (for icons) -->
+  <script src="https://kit.fontawesome.com/9d1f0d7a00.js" crossorigin="anonymous"></script>
 
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
-
+  <style>
+    /* Simple star-field background for intro */
+    #stars {
+      position: absolute;
+      width: 100%; height: 100%;
+      background: #0f172a url('https://i.imgur.com/9Yz4X2X.png') repeat;
+      animation: moveStars 60s linear infinite;
+      z-index: 0;
+    }
+    @keyframes moveStars {
+      from { background-position: 0 0 }
+      to   { background-position: -10000px 5000px }
+    }
+    /* Typewriter cursor */
+    .typewriter-text::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      margin-left: 0.1em;
+    }
+    @keyframes blink {
+      50% { opacity: 0 }
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="font-sans antialiased">
 
-  <!-- INTRO: only your name -->
-  <div id="intro" class="flex items-center justify-center h-screen bg-white">
-    <h1 id="intro-title" class="text-6xl font-extrabold cursor-pointer text-indigo-600"></h1>
-  </div>
-
-  <!-- FULLPAGE WRAPPER -->
-  <div id="fullpage" style="display:none;">
-    <!-- About Section -->
-    <section class="section flex flex-col items-center justify-center px-6">
-      <h2 class="text-4xl font-semibold mb-4" data-aos="fade-down">About Me</h2>
-      <p class="max-w-2xl text-center text-gray-700 leading-relaxed" data-aos="fade-up">
-        Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology.
-        Passionate about solving real-world problems through innovative solutions in AI, data science, and web development.
-        Proficient in building intelligent systems, interactive applications, and scalable solutions.
-        Always learning, always growing! 🚀💡 Let's connect, collaborate, and create something amazing together! 🤝
-      </p>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section px-6 py-12">
-      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-down">Skills</h2>
-      <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        <!-- Python -->
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left">
-          <i class="fab fa-python text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">Python</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="50">
-          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">SQL</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="100">
-          <i class="fas fa-brain text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">Scikit-learn</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="150">
-          <i class="fas fa-chart-line text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">Pandas</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="200">
-          <i class="fas fa-cube text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">NumPy</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="250">
-          <i class="fas fa-flask text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">Flask</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="300">
-          <i class="fas fa-bolt text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">FastAPI</span>
-        </div>
-        <div class="p-4 bg-gray-100 rounded-xl flex flex-col items-center" data-aos="flip-left" data-aos-delay="350">
-          <i class="fas fa-stream text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium">Streamlit</span>
-        </div>
-        <!-- add the rest similarly... -->
+  <div id="fullpage">
+    <!-- INTRO -->
+    <section class="relative flex items-center justify-center bg-white">
+      <div id="stars"></div>
+      <div class="z-10 text-center px-4">
+        <h1 id="typewriter" class="text-5xl md:text-6xl font-extrabold text-gray-900 typewriter-text cursor-pointer">
+          <!-- JS will fill this in -->
+        </h1>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="section px-6 py-12 bg-gray-50">
-      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-down">Projects</h2>
-      <div class="max-w-6xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <!-- NutriAI -->
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in">
-          <h3 class="text-xl font-bold mb-2">NutriAI</h3>
+    <!-- ABOUT -->
+    <section class="section flex flex-col lg:flex-row items-center bg-white px-6 py-16">
+      <div class="lg:w-1/2 mb-8 lg:mb-0" data-aos="fade-right">
+        <h2 class="text-4xl font-semibold mb-4 text-gray-900">About Me</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology.
+          Passionate about solving real-world problems through innovative solutions in AI, data science, and web development.
+          Proficient in building intelligent systems, interactive applications, and scalable solutions.
+          Always learning, always growing! 🚀💡 Let's connect, collaborate, and create something amazing together! 🤝
+        </p>
+      </div>
+      <div class="lg:w-1/2 flex justify-center" data-aos="fade-left">
+        <img
+          src="Bp.jpg"
+          alt="Bhavesh Puranam"
+          class="w-64 h-64 rounded-full object-cover shadow-xl"
+        />
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section bg-gray-50 px-6 py-16">
+      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Skills</h2>
+      <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <!-- repeat this block, adjusting icon & text -->
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left">
+          <i class="fab fa-python text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Python</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="50">
+          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">SQL</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="100">
+          <i class="fas fa-brain text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Scikit-learn</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="150">
+          <i class="fas fa-chart-line text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Pandas</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="200">
+          <i class="fas fa-cube text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">NumPy</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="250">
+          <i class="fas fa-flask text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Flask</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="300">
+          <i class="fas fa-bolt text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">FastAPI</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="350">
+          <i class="fas fa-stream text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Streamlit</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left">
+          <i class="fab fa-git-alt text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Git</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-book text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Jupyter</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">PostgreSQL</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">MySQL</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fab fa-pied-piper text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">PyTorch</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fab fa-tensorflow text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">TensorFlow</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-project-diagram text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">KMeans</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-sliders-h text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">SVM</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-chart-bar text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">ARIMA</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fab fa-docker text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Docker</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-link text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">LangChain</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">ChromaDB</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-camera text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">OpenCV</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fab fa-postman text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">Postman</span>
+        </div>
+        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
+          <i class="fas fa-robot text-3xl text-indigo-600 mb-2"></i>
+          <span class="font-medium text-gray-800">ML Algorithms</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section bg-white px-6 py-16">
+      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Projects</h2>
+      <div class="max-w-5xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in">
+          <h3 class="text-2xl font-bold mb-2">NutriAI</h3>
           <p>Engineered AI-Driven personalized nutrition coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI; achieved 91% precision & 89% F1-score.</p>
         </div>
-        <!-- LeafShield -->
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in" data-aos-delay="100">
-          <h3 class="text-xl font-bold mb-2">LeafShield</h3>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+          <h3 class="text-2xl font-bold mb-2">LeafShield</h3>
           <p>Designed custom CNN & OpenCV pipeline to classify 12 plant diseases with 95%+ accuracy via TensorFlow.</p>
         </div>
-        <!-- MailMind -->
-        <div class="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition" data-aos="zoom-in" data-aos-delay="200">
-          <h3 class="text-xl font-bold mb-2">MailMind</h3>
-          <p>Built NLP pipeline with BERT & spaCy for real-time email summarization & sentiment analysis; exposed via FastAPI & Streamlit.</p>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+          <h3 class="text-2xl font-bold mb-2">MailMind</h3>
+          <p>Built an NLP pipeline with BERT & spaCy for real-time email summarization & sentiment analysis; exposed via FastAPI & Streamlit.</p>
         </div>
-        <!-- continue with your other cards... -->
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+          <h3 class="text-2xl font-bold mb-2">PromptQuest</h3>
+          <p>Created a LangChain + ChromaDB essay & policy Q&A platform with Ollama LLMs & Streamlit interface.</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+          <h3 class="text-2xl font-bold mb-2">GradeGuard</h3>
+          <p>Implemented SVM model & Flask-Mail alerts to predict student performance and send progress tips.</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="500">
+          <h3 class="text-2xl font-bold mb-2">SpendPredictor</h3>
+          <p>Forecasted personal finance with ARIMA & KMeans in Flask app, enabling budgeting simulations & clustering.</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg col-span-full sm:col-auto" data-aos="zoom-in" data-aos-delay="600">
+          <h3 class="text-2xl font-bold mb-2">File Navigator</h3>
+          <p>Developed a cross-platform CLI using Python & difflib for fuzzy file search across nested structures.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="section px-6 py-12">
-      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-down">Education</h2>
-      <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
-        <div class="p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="fade-right">
-          <h3 class="font-bold">B.Tech in CSE (AI & ML)</h3>
-          <p class="italic">SRM IST Chennai • 2022–2026</p>
-          <p>CGPA 8.12</p>
+    <!-- EDUCATION -->
+    <section class="section bg-white px-6 py-16">
+      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Education</h2>
+      <div class="max-w-4xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="fade-up">
+          <h3 class="text-xl font-bold">B.Tech in CSE (AI & ML)</h3>
+          <p class="italic">SRM IST Chennai • 2022–2026 (CGPA 8.12)</p>
+          <p class="mt-2 text-gray-700">Relevant: ML, Deep Learning, NLP, Compiler Design, Cloud Computing</p>
         </div>
-        <div class="p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="fade-up">
-          <h3 class="font-bold">Class XII, CS Stream</h3>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold">Class XII, CS Stream</h3>
           <p class="italic">Velammal Matric Hr. Sec. School • 2022</p>
-          <p>First Class</p>
+          <p class="mt-2 text-gray-700">First Class</p>
         </div>
-        <div class="p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="fade-left">
-          <h3 class="font-bold">Class X</h3>
+        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold">Class X</h3>
           <p class="italic">Velammal Matric Hr. Sec. School • 2020</p>
-          <p>First Class; 1st Prize in School Chess Tournament</p>
+          <p class="mt-2 text-gray-700">First Class; 1st Prize in School Chess Tournament</p>
         </div>
       </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section class="section px-6 py-12 bg-gray-50">
-      <h2 class="text-4xl font-semibold text-center mb-8" data-aos="fade-up">Timeline</h2>
-      <div class="relative max-w-4xl mx-auto">
-        <div class="absolute top-0 left-1/2 w-1 h-full bg-indigo-600"></div>
-        <!-- Class X -->
-        <div class="flex mb-12" data-aos="fade-right">
-          <div class="w-1/2 pr-8 text-right">
-            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">🎓</div>
-            <h3 class="font-bold mt-2">Class X Completed</h3>
-            <p class="italic">2020</p>
+    <!-- TIMELINE -->
+    <section class="section bg-white px-6 py-16">
+      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Roadmap & Timeline</h2>
+      <div class="max-w-3xl mx-auto relative">
+        <!-- vertical line -->
+        <div class="absolute left-1/2 transform -translate-x-1 bg-indigo-600 w-1 h-full"></div>
+        <!-- items -->
+        <div class="space-y-12">
+          <!-- 10th -->
+          <div class="flex items-center justify-start" data-aos="fade-right">
+            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
+              <i class="fas fa-school"></i>
+            </div>
+            <div class="ml-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg">
+              <h3 class="font-bold">Class X • Velammal Matric Hr. Sec. School</h3>
+              <p class="italic text-gray-600">2020</p>
+            </div>
           </div>
-          <div class="w-1/2"></div>
-        </div>
-        <!-- Class XII -->
-        <div class="flex mb-12" data-aos="fade-left">
-          <div class="w-1/2"></div>
-          <div class="w-1/2 pl-8 text-left">
-            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">🎓</div>
-            <h3 class="font-bold mt-2">Class XII Completed</h3>
-            <p class="italic">2022</p>
+          <!-- 12th -->
+          <div class="flex items-center justify-end" data-aos="fade-left">
+            <div class="mr-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg text-right">
+              <h3 class="font-bold">Class XII, CS Stream</h3>
+              <p class="italic text-gray-600">2022</p>
+            </div>
+            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
           </div>
-        </div>
-        <!-- B.Tech start -->
-        <div class="flex mb-12" data-aos="fade-right">
-          <div class="w-1/2 pr-8 text-right">
-            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">🎓</div>
-            <h3 class="font-bold mt-2">B.Tech Begins</h3>
-            <p class="italic">2022</p>
+          <!-- Python Dev Intern -->
+          <div class="flex items-center justify-start" data-aos="fade-right">
+            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="ml-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg">
+              <h3 class="font-bold">Python Dev Intern • Pricol Ltd</h3>
+              <p class="italic text-gray-600">Dec 2023</p>
+            </div>
           </div>
-          <div class="w-1/2"></div>
-        </div>
-        <!-- Pricol Intern -->
-        <div class="flex mb-12" data-aos="fade-left">
-          <div class="w-1/2"></div>
-          <div class="w-1/2 pl-8 text-left">
-            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">💼</div>
-            <h3 class="font-bold mt-2">Python Dev Intern @ Pricol Ltd</h3>
-            <p class="italic">Dec 2023</p>
+          <!-- Data Engineer Intern -->
+          <div class="flex items-center justify-end" data-aos="fade-left">
+            <div class="mr-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg text-right">
+              <h3 class="font-bold">Data Engineer Intern • S2.AI</h3>
+              <p class="italic text-gray-600">Dec 2024 – Jan 2025</p>
+            </div>
+            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
+              <i class="fas fa-database"></i>
+            </div>
           </div>
-        </div>
-        <!-- S2.AI Intern -->
-        <div class="flex" data-aos="fade-right">
-          <div class="w-1/2 pr-8 text-right">
-            <div class="inline-block p-3 bg-indigo-600 text-white rounded-full">💼</div>
-            <h3 class="font-bold mt-2">Data Engineer Intern @ S2.AI</h3>
-            <p class="italic">Dec 2024 – Jan 2025</p>
-          </div>
-          <div class="w-1/2"></div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section px-6 py-12">
-      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
-        <!-- Map -->
-        <div class="rounded-2xl overflow-hidden shadow-lg" data-aos="fade-right">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." 
-                  class="w-full h-80" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        <!-- Form -->
-        <form action="https://formspree.io/f/your-form-id" method="POST"
-              class="bg-white p-8 rounded-2xl shadow-lg space-y-4" data-aos="fade-left">
-          <h2 class="text-2xl font-semibold text-center">Get In Touch</h2>
-          <input name="name"    placeholder="Name"    required class="w-full p-3 bg-gray-100 rounded"/>
-          <input name="email"   placeholder="Email"   required class="w-full p-3 bg-gray-100 rounded"/>
-          <input name="phone"   placeholder="Phone"        class="w-full p-3 bg-gray-100 rounded"/>
-          <textarea name="message" rows="4" placeholder="Message"
-                    class="w-full p-3 bg-gray-100 rounded"></textarea>
-          <button type="submit" class="w-full py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700">
-            Submit
+    <!-- CONTACT -->
+    <section class="section bg-white px-6 py-16">
+      <h2 class="text-4xl font-semibold text-center mb-8 text-gray-900" data-aos="fade-down">Get In Touch</h2>
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <img src="https://i.imgur.com/OYVPeal.png" alt="Contact illustration" class="w-full rounded-lg shadow-lg" data-aos="fade-right"/>
+        <form action="#" class="space-y-4" data-aos="fade-left">
+          <input type="text" placeholder="Name" class="w-full p-4 border rounded-lg focus:outline-indigo-500"/>
+          <input type="email" placeholder="Email" class="w-full p-4 border rounded-lg focus:outline-indigo-500"/>
+          <input type="text" placeholder="Phone" class="w-full p-4 border rounded-lg focus:outline-indigo-500"/>
+          <textarea rows="5" placeholder="Message" class="w-full p-4 border rounded-lg focus:outline-indigo-500"></textarea>
+          <button type="submit" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+            <i class="fas fa-paper-plane mr-2"></i>Submit
           </button>
         </form>
       </div>
     </section>
   </div>
 
-  <!-- SCRIPTS -->
+  <!-- AOS & fullPage init -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.js"></script>
   <script>
-    // Initialize AOS
-    AOS.init({ once:true });
+    // TYPEWRITER
+    const nameText = "I’m Bhavesh Puranam.";
+    let i = 0;
+    const el = document.getElementById("typewriter");
+    function type() {
+      if (i < nameText.length) {
+        el.textContent += nameText.charAt(i++);
+        setTimeout(type, 100);
+      } else {
+        // after typing, make clickable
+        el.addEventListener("click", ()=> fullpage_api.moveSectionDown());
+      }
+    }
+    document.addEventListener("DOMContentLoaded", ()=> {
+      type();
 
-    // Typewriter intro
-    const txt="I’m Bhavesh Puranam."; let idx=0;
-    const el=document.getElementById("intro-title");
-    (function type(){
-      if(idx<txt.length) el.textContent+=txt[idx++], setTimeout(type,100);
-    })();
-
-    // On click name → hide intro & start fullPage
-    el.addEventListener("click",()=>{
-      document.getElementById("intro").style.opacity=0;
-      setTimeout(()=>{
-        document.getElementById("intro").style.display="none";
-        document.getElementById("fullpage").style.display="block";
-        new fullpage('#fullpage',{
-          autoScrolling:true,
-          navigation:true,
-          anchors:['about','skills','projects','education','timeline','contact'],
-          navigationPosition:'right'
-        });
-      },600);
+      // init fullPage.js
+      new fullpage("#fullpage", {
+        anchors: [
+          "intro","about","skills","projects",
+          "education","timeline","contact"
+        ],
+        navigation: true,
+        navigationPosition: "right",
+        scrollOverflow: true
+      });
+      // init AOS
+      AOS.init({ once: true, duration: 800 });
     });
   </script>
 </body>
 </html>
-    
