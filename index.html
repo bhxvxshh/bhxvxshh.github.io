@@ -18,29 +18,74 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <!-- Custom CSS -->
     <style>
         /* Dark mode variables */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f3f4f6;
+            --bg-tertiary: #e5e7eb;
             --text-primary: #111827;
             --text-secondary: #6b7280;
             --accent: #3b82f6;
+            --card-bg: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.9);
         }
         
         .dark {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
             --accent: #60a5fa;
+            --card-bg: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.9);
         }
         
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+        
+        /* Background transitions */
+        section {
+            background-color: var(--bg-primary);
+            transition: background-color 0.5s ease;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--bg-secondary);
+        }
+        
+        .card-bg {
+            background-color: var(--card-bg);
             transition: all 0.3s ease;
+        }
+        
+        .nav-bg {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Gradient text animation */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         /* Typewriter effect */
@@ -63,17 +108,69 @@
             50% { border-color: var(--accent); }
         }
         
-        /* Card hover effects */
+        /* Floating animation */
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Pulse animation */
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .8; transform: scale(0.95); }
+        }
+        
+        /* Card hover effects with 3D */
         .project-card {
             transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
         }
         
-        /* Timeline styles */
+        /* Skill card hover */
+        .skill-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s ease;
+        }
+        
+        .skill-card:hover::before {
+            opacity: 0.1;
+            transform: scale(1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Timeline animation */
         .timeline::before {
             content: '';
             position: absolute;
@@ -81,22 +178,52 @@
             transform: translateX(-50%);
             width: 2px;
             height: 100%;
-            background: var(--accent);
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            animation: timelineGrow 2s ease-out forwards;
         }
         
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 30px;
-            }
+        @keyframes timelineGrow {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        
+        /* Parallax effect */
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* Glow effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            to { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4); }
         }
         
         /* Progress bar animation */
         .progress-bar {
-            animation: fillProgress 2s ease-out forwards;
+            position: relative;
+            overflow: hidden;
         }
         
-        @keyframes fillProgress {
-            from { width: 0; }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         /* Smooth scrollbar */
@@ -114,18 +241,141 @@
         }
         
         /* Active nav indicator */
-        .nav-link.active {
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Rotating gradient border */
+        .gradient-border {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2px;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 1rem;
+            background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe, #00f2fe, #f093fb);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientRotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Morphing blob background */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            animation: blob 10s infinite;
+        }
+        
+        .blob:nth-child(1) {
+            background: #a78bfa;
+            width: 400px;
+            height: 400px;
+            left: -200px;
+            top: -100px;
+            animation-delay: 0s;
+        }
+        
+        .blob:nth-child(2) {
+            background: #60a5fa;
+            width: 300px;
+            height: 300px;
+            right: -150px;
+            bottom: -100px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-50px, 50px) scale(0.9); }
+            75% { transform: translate(30px, -30px) scale(1.05); }
+        }
+        
+        /* Text reveal animation */
+        .reveal-text {
+            overflow: hidden;
+        }
+        
+        .reveal-text span {
+            display: inline-block;
+            animation: revealText 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Tilt effect */
+        .tilt {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        
+        /* Custom cursor glow */
+        .cursor-glow {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            filter: blur(10px);
         }
     </style>
 </head>
 <body class="font-sans antialiased">
+    <!-- Custom cursor glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white dark:bg-gray-900 shadow-md transition-all duration-300">
+    <nav id="navbar" class="fixed top-0 w-full z-50 nav-bg shadow-md transition-all duration-300">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="#intro" class="text-2xl font-bold text-blue-600 dark:text-blue-400">BP</a>
+                <a href="#intro" class="text-2xl font-bold gradient-text">BP</a>
                 
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#intro" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
@@ -138,9 +388,9 @@
                     <a href="#contact" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
                     
                     <!-- Dark mode toggle -->
-                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition hover:scale-110">
                         <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
                     </button>
                 </div>
                 
@@ -167,43 +417,49 @@
     <!-- Intro Section -->
     <section id="intro" class="min-h-screen flex items-center justify-center relative">
         <div id="particles-js" class="absolute inset-0"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
         <div class="relative z-10 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 float-animation">
                 <span class="typewriter">I'm Bhavesh Puranam.</span>
             </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-400 mt-8 opacity-0 animate-fadeIn">
-                AI/ML Engineer • Data Scientist • Full Stack Developer
+            <p class="text-xl text-gray-600 dark:text-gray-400 mt-8 reveal-text">
+                <span style="animation-delay: 3s">AI/ML Engineer</span>
+                <span style="animation-delay: 3.2s"> • </span>
+                <span style="animation-delay: 3.4s">Data Scientist</span>
+                <span style="animation-delay: 3.6s"> • </span>
+                <span style="animation-delay: 3.8s">Full Stack Developer</span>
             </p>
             <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })" 
-                    class="mt-12 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transform hover:scale-105 transition opacity-0 animate-fadeIn animation-delay-1000">
+                    class="mt-12 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transform hover:scale-110 transition-all glow pulse-animation">
                 Explore My Work <i class="fas fa-arrow-down ml-2"></i>
             </button>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">About Me</h2>
+    <section id="about" class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">About Me</h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <img src="Bp.jpg" alt="Bhavesh Puranam" class="rounded-lg shadow-xl w-full max-w-md mx-auto">
+                <div data-aos="fade-right" data-aos-duration="1500" class="tilt">
+                    <img src="Bp.jpg" alt="Bhavesh Puranam" class="rounded-lg shadow-xl w-full max-w-md mx-auto float-animation">
                 </div>
-                <div data-aos="fade-left">
-                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                <div data-aos="fade-left" data-aos-duration="1500">
+                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 parallax">
                         Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology. 
                         Passionate about solving real-world problems through innovative solutions in AI, data science, and web development. 
                         Proficient in building intelligent systems, interactive applications, and scalable solutions. 
                         Always learning, always growing! 🚀💡 Let's connect, collaborate, and create something amazing together! 🤝
                     </p>
                     <div class="mt-8 flex space-x-4">
-                        <a href="https://github.com/bhxvxshh" target="_blank" class="text-3xl hover:text-blue-600 transition">
+                        <a href="https://github.com/bhxvxshh" target="_blank" class="text-3xl hover:text-blue-600 transition transform hover:scale-125 hover:rotate-12">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="text-3xl hover:text-blue-600 transition">
+                        <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="text-3xl hover:text-blue-600 transition transform hover:scale-125 hover:rotate-12">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="mailto:psbhaveshsharma@gmail.com" class="text-3xl hover:text-blue-600 transition">
+                        <a href="mailto:psbhaveshsharma@gmail.com" class="text-3xl hover:text-blue-600 transition transform hover:scale-125 hover:rotate-12">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -213,72 +469,117 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white dark:bg-gray-900">
+    <section id="skills" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Skills & Technologies</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Skills & Technologies</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                <!-- Skills will be populated from existing structure -->
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="100">
+                <!-- Main Skills -->
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="100">
                     <i class="fab fa-python text-4xl mb-2 text-blue-500"></i>
                     <p class="font-semibold">Python</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="150">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="150">
                     <i class="fas fa-database text-4xl mb-2 text-green-500"></i>
                     <p class="font-semibold">SQL</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="200">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="200">
                     <i class="fas fa-brain text-4xl mb-2 text-purple-500"></i>
                     <p class="font-semibold">Scikit-learn</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="250">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="250">
                     <i class="fas fa-table text-4xl mb-2 text-orange-500"></i>
                     <p class="font-semibold">Pandas</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="300">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="300">
                     <i class="fas fa-calculator text-4xl mb-2 text-red-500"></i>
                     <p class="font-semibold">NumPy</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="350">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="350">
                     <i class="fas fa-flask text-4xl mb-2 text-indigo-500"></i>
                     <p class="font-semibold">Flask</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="400">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="400">
                     <i class="fas fa-rocket text-4xl mb-2 text-teal-500"></i>
                     <p class="font-semibold">FastAPI</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="450">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="450">
                     <i class="fas fa-stream text-4xl mb-2 text-pink-500"></i>
                     <p class="font-semibold">Streamlit</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="500">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="500">
                     <i class="fab fa-git-alt text-4xl mb-2 text-orange-600"></i>
                     <p class="font-semibold">Git</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="550">
-                    <i class="fas fa-fire text-4xl mb-2 text-yellow-500"></i>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="550">
+                    <i class="fas fa-book text-4xl mb-2 text-purple-600"></i>
+                    <p class="font-semibold">Jupyter</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="600">
+                    <i class="fas fa-database text-4xl mb-2 text-blue-600"></i>
+                    <p class="font-semibold">PostgreSQL</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="650">
+                    <i class="fas fa-database text-4xl mb-2 text-yellow-600"></i>
+                    <p class="font-semibold">MySQL</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="700">
+                    <i class="fas fa-fire text-4xl mb-2 text-orange-500"></i>
                     <p class="font-semibold">PyTorch</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="600">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="750">
                     <i class="fas fa-robot text-4xl mb-2 text-blue-600"></i>
                     <p class="font-semibold">TensorFlow</p>
                 </div>
-                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="650">
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="800">
+                    <i class="fas fa-sitemap text-4xl mb-2 text-green-600"></i>
+                    <p class="font-semibold">KMeans</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="850">
+                    <i class="fas fa-vector-square text-4xl mb-2 text-purple-600"></i>
+                    <p class="font-semibold">SVM</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="900">
+                    <i class="fas fa-chart-line text-4xl mb-2 text-red-600"></i>
+                    <p class="font-semibold">ARIMA</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="950">
                     <i class="fab fa-docker text-4xl mb-2 text-blue-400"></i>
                     <p class="font-semibold">Docker</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="1000">
+                    <i class="fas fa-link text-4xl mb-2 text-indigo-600"></i>
+                    <p class="font-semibold">LangChain</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="1050">
+                    <i class="fas fa-database text-4xl mb-2 text-green-600"></i>
+                    <p class="font-semibold">ChromaDB</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="1100">
+                    <i class="fas fa-camera text-4xl mb-2 text-teal-600"></i>
+                    <p class="font-semibold">OpenCV</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="1150">
+                    <i class="fas fa-mail-bulk text-4xl mb-2 text-orange-600"></i>
+                    <p class="font-semibold">Postman</p>
+                </div>
+                <div class="skill-card card-bg p-6 rounded-lg text-center hover:shadow-lg transition gradient-border" data-aos="zoom-in" data-aos-delay="1200">
+                    <i class="fas fa-code-branch text-4xl mb-2 text-purple-500"></i>
+                    <p class="font-semibold">ML Algorithms</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Projects</h2>
+    <!-- Projects Section with enhanced animations -->
+    <section id="projects" class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- NutriAI -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
-                        <i class="fas fa-apple-alt text-6xl text-white"></i>
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-apple-alt text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">NutriAI</h3>
@@ -288,25 +589,26 @@
                                 <span>Tech Stack</span>
                                 <span>95%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div class="progress-bar bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">YOLOv8</span>
-                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">LLaMA 3.2</span>
-                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">FastAPI</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">YOLOv8</span>
+                            <span class="text-xs bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 px-2 py-1 rounded transform hover:scale-110 transition">LLaMA 3.2</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">FastAPI</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/nutriai" target="_blank" class="text-blue-600 hover:underline">
-                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        <a href="https://github.com/bhxvxshh/nutriai" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- LeafShield -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
-                        <i class="fas fa-leaf text-6xl text-white"></i>
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-leaf text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">LeafShield</h3>
@@ -316,25 +618,26 @@
                                 <span>Accuracy</span>
                                 <span>95%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div class="progress-bar bg-gradient-to-r from-green-500 to-teal-500 h-2 rounded-full" style="width: 95%"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">CNN</span>
-                            <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">TensorFlow</span>
-                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">OpenCV</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">CNN</span>
+                            <span class="text-xs bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 px-2 py-1 rounded transform hover:scale-110 transition">TensorFlow</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">OpenCV</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/leafshield" target="_blank" class="text-blue-600 hover:underline">
-                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        <a href="https://github.com/bhxvxshh/leafshield" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- MailMind -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                        <i class="fas fa-envelope-open-text text-6xl text-white"></i>
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-envelope-open-text text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">MailMind</h3>
@@ -344,25 +647,27 @@
                                 <span>Efficiency</span>
                                 <span>60%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div class="progress-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 60%"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">BERT</span>
-                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">spaCy</span>
-                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Streamlit</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">BERT</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">spaCy</span>
+                            <span class="text-xs bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 px-2 py-1 rounded transform hover:scale-110 transition">Streamlit</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/mailmind" target="_blank" class="text-blue-600 hover:underline">
-                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        <a href="https://github.com/bhxvxshh/mailmind" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
+                <!-- More projects with similar enhanced styling... -->
                 <!-- PromptQuest -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center">
-                        <i class="fas fa-robot text-6xl text-white"></i>
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="600">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-robot text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
@@ -372,25 +677,26 @@
                                 <span>AI Integration</span>
                                 <span>90%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div class="progress-bar bg-gradient-to-r from-indigo-500 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">LangChain</span>
-                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Ollama</span>
-                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">ChromaDB</span>
+                            <span class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 px-2 py-1 rounded transform hover:scale-110 transition">LangChain</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">Ollama</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">ChromaDB</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/promptquest" target="_blank" class="text-blue-600 hover:underline">
-                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        <a href="https://github.com/bhxvxshh/promptquest" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- GradeGuard -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
-                    <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-6xl text-white"></i>
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="800">
+                    <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-graduation-cap text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">GradeGuard</h3>
@@ -400,25 +706,26 @@
                                 <span>Prediction Accuracy</span>
                                 <span>85%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div class="progress-bar bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style="width: 85%"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">SVM</span>
-                            <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Flask</span>
-                            <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Flask-Mail</span>
+                            <span class="text-xs bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 px-2 py-1 rounded transform hover:scale-110 transition">SVM</span>
+                            <span class="text-xs bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 px-2 py-1 rounded transform hover:scale-110 transition">Flask</span>
+                            <span class="text-xs bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 px-2 py-1 rounded transform hover:scale-110 transition">Flask-Mail</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/gradeguard" target="_blank" class="text-blue-600 hover:underline">
-                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        <a href="https://github.com/bhxvxshh/gradeguard" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- SpendPredictor -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="600">
-                    <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
-                        <i class="fas fa-chart-line text-6xl text-white"></i>
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="1000">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-chart-line text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
@@ -428,17 +735,17 @@
                                 <span>Forecasting</span>
                                 <span>80%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div class="progress-bar bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" style="width: 80%"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">ARIMA</span>
-                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">KMeans</span>
-                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Flask</span>
+                            <span class="text-xs bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 px-2 py-1 rounded transform hover:scale-110 transition">ARIMA</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">KMeans</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">Flask</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/spendpredictor" target="_blank" class="text-blue-600 hover:underline">
-                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        <a href="https://github.com/bhxvxshh/spendpredictor" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
@@ -446,122 +753,122 @@
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-white dark:bg-gray-900">
+    <!-- Education Section with enhanced animations -->
+    <section id="education" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Education</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Education</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- B.Tech -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-bg rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300 gradient-border" data-aos="zoom-in-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white pulse-animation">
                             <i class="fas fa-university"></i>
                         </div>
                         <h3 class="text-xl font-bold ml-4">B.Tech - AI & ML</h3>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400">SRM Institute of Science and Technology</p>
-                    <p class="text-sm text-gray-500 mt-2">Expected 2026 • CGPA: 8.12</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">Expected 2026 • CGPA: 8.12</p>
                 </div>
 
                 <!-- Class XII -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-bg rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300 gradient-border" data-aos="zoom-in-up" data-aos-delay="200">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white pulse-animation">
                             <i class="fas fa-school"></i>
                         </div>
                         <h3 class="text-xl font-bold ml-4">Class XII</h3>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400">Velammal Matric Hr. Sec. School</p>
-                    <p class="text-sm text-gray-500 mt-2">2022 • Computer Science • First Class</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">2022 • Computer Science • First Class</p>
                 </div>
 
                 <!-- Class X -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-bg rounded-lg p-6 shadow-lg transform hover:scale-105 transition-all duration-300 gradient-border" data-aos="zoom-in-up" data-aos-delay="300">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white pulse-animation">
                             <i class="fas fa-book"></i>
                         </div>
                         <h3 class="text-xl font-bold ml-4">Class X</h3>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400">Velammal Matric Hr. Sec. School</p>
-                    <p class="text-sm text-gray-500 mt-2">2020 • First Class • Chess Champion</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">2020 • First Class • Chess Champion</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section id="timeline" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <!-- Timeline Section with enhanced animations -->
+    <section id="timeline" class="py-20 relative overflow-hidden">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">My Journey</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">My Journey</h2>
             <div class="relative timeline">
                 <!-- Timeline items -->
-                <div class="timeline-item mb-8 flex items-center w-full" data-aos="fade-right">
+                <div class="timeline-item mb-8 flex items-center w-full" data-aos="slide-right" data-aos-duration="1000">
                     <div class="w-full md:w-5/12 px-4">
-                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all">
                             <h3 class="font-bold text-lg mb-2">Data Engineer Intern @ S2.AI</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Dec 2024 - Jan 2025</p>
                             <p class="text-sm mt-2">Built ETL pipelines, improved YOLOv5 accuracy by 12%</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800 glow"></div>
                 </div>
 
-                <div class="timeline-item mb-8 flex items-center w-full justify-end" data-aos="fade-left">
+                <div class="timeline-item mb-8 flex items-center w-full justify-end" data-aos="slide-left" data-aos-duration="1000">
                     <div class="w-full md:w-5/12 px-4">
-                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:-rotate-1 transition-all">
                             <h3 class="font-bold text-lg mb-2">Python Developer Intern @ Pricol</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Dec 2023</p>
                             <p class="text-sm mt-2">Developed RFID login system, reduced file retrieval time by 40%</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-800 glow"></div>
                 </div>
 
-                <div class="timeline-item mb-8 flex items-center w-full" data-aos="fade-right">
+                <div class="timeline-item mb-8 flex items-center w-full" data-aos="slide-right" data-aos-duration="1000">
                     <div class="w-full md:w-5/12 px-4">
-                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all">
                             <h3 class="font-bold text-lg mb-2">Started B.Tech at SRM</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">2022</p>
                             <p class="text-sm mt-2">AI & ML Specialization</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-white dark:border-gray-800 glow"></div>
                 </div>
 
-                <div class="timeline-item mb-8 flex items-center w-full justify-end" data-aos="fade-left">
+                <div class="timeline-item mb-8 flex items-center w-full justify-end" data-aos="slide-left" data-aos-duration="1000">
                     <div class="w-full md:w-5/12 px-4">
-                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:-rotate-1 transition-all">
                             <h3 class="font-bold text-lg mb-2">Completed Class XII</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">2022</p>
                             <p class="text-sm mt-2">Computer Science, First Class</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-500 rounded-full border-4 border-white dark:border-gray-800 glow"></div>
                 </div>
 
-                <div class="timeline-item flex items-center w-full" data-aos="fade-right">
+                <div class="timeline-item flex items-center w-full" data-aos="slide-right" data-aos-duration="1000">
                     <div class="w-full md:w-5/12 px-4">
-                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all">
                             <h3 class="font-bold text-lg mb-2">Completed Class X</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">2020</p>
                             <p class="text-sm mt-2">First Class, Chess Tournament Winner</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-white dark:border-gray-800 glow"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-white dark:bg-gray-900">
+    <section id="certifications" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Certifications</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Certifications</h2>
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all gradient-border" data-aos="flip-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
-                        <i class="fas fa-shield-alt text-3xl text-blue-500 mr-4"></i>
+                        <i class="fas fa-shield-alt text-3xl text-blue-500 mr-4 float-animation"></i>
                         <div>
                             <h3 class="font-bold">Cyber Intelligence in Robotics</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">MIT Square • Mar 2024</p>
@@ -570,9 +877,9 @@
                     <p class="text-sm">Linux Admin, Kali Linux, Packet Tracer</p>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all gradient-border" data-aos="flip-up" data-aos-delay="200">
                     <div class="flex items-center mb-4">
-                        <i class="fab fa-aws text-3xl text-orange-500 mr-4"></i>
+                        <i class="fab fa-aws text-3xl text-orange-500 mr-4 float-animation"></i>
                         <div>
                             <h3 class="font-bold">AWS Cloud Practitioner</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services • Feb 2024</p>
@@ -581,9 +888,9 @@
                     <p class="text-sm">Cloud Computing, AWS Core Services</p>
                 </div>
 
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all gradient-border" data-aos="flip-up" data-aos-delay="300">
                     <div class="flex items-center mb-4">
-                        <i class="fab fa-python text-3xl text-green-500 mr-4"></i>
+                        <i class="fab fa-python text-3xl text-green-500 mr-4 float-animation"></i>
                         <div>
                             <h3 class="font-bold">Python 101 for Data Science</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">IBM Skills Network • Nov 2022</p>
@@ -596,70 +903,80 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Get In Touch</h2>
-            <div class="grid md:grid-cols-2 gap-12">
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
                 <!-- Contact Form -->
-                <div data-aos="fade-right">
+                <div data-aos="fade-right" data-aos-duration="1500">
                     <form id="contactForm" class="space-y-6">
-                        <div>
+                        <div class="group">
                             <label class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
                         </div>
-                        <div>
+                        <div class="group">
                             <label class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+                            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
                         </div>
-                        <div>
+                        <div class="group">
                             <label class="block text-sm font-medium mb-2">Phone</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
                         </div>
-                        <div>
+                        <div class="group">
                             <label class="block text-sm font-medium mb-2">Message</label>
-                            <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"></textarea>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all resize-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 glow">
                             Send Message <i class="fas fa-paper-plane ml-2"></i>
                         </button>
                     </form>
-                    <div id="successMessage" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200 rounded-lg">
+                    <div id="successMessage" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200 rounded-lg float-animation">
                         Thank you for your message! I'll get back to you soon.
                     </div>
                 </div>
 
-                <!-- Map & Contact Info -->
-                <div data-aos="fade-left">
-                    <div class="h-64 mb-6 rounded-lg overflow-hidden">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3160461!2d78.2677!3d17.4123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890"
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope text-2xl text-blue-600 mr-4"></i>
+                <!-- Contact Info -->
+                <div data-aos="fade-left" data-aos-duration="1500">
+                    <div class="space-y-6">
+                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                            <i class="fas fa-envelope text-3xl text-blue-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Email</p>
                                 <p class="text-gray-600 dark:text-gray-400">psbhaveshsharma@gmail.com</p>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-phone text-2xl text-blue-600 mr-4"></i>
+                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                            <i class="fas fa-phone text-3xl text-green-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Phone</p>
                                 <p class="text-gray-600 dark:text-gray-400">+91 6385497381</p>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-map-marker-alt text-2xl text-blue-600 mr-4"></i>
+                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                            <i class="fas fa-map-marker-alt text-3xl text-red-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Location</p>
                                 <p class="text-gray-600 dark:text-gray-400">Chennai, Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                            <i class="fab fa-linkedin text-3xl text-blue-700 mr-4 pulse-animation"></i>
+                            <div>
+                                <p class="font-semibold">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition">
+                                    /in/bhavesh-puranam
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                            <i class="fab fa-github text-3xl text-gray-800 dark:text-gray-200 mr-4 pulse-animation"></i>
+                            <div>
+                                <p class="font-semibold">GitHub</p>
+                                <a href="https://github.com/bhxvxshh" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition">
+                                    @bhxvxshh
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -669,17 +986,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 dark:bg-black text-white py-8">
         <div class="container mx-auto px-6 text-center">
             <p>© 2024 Bhavesh Puranam. All rights reserved.</p>
             <div class="mt-4 flex justify-center space-x-4">
-                <a href="https://github.com/bhxvxshh" target="_blank" class="hover:text-blue-400 transition">
+                <a href="https://github.com/bhxvxshh" target="_blank" class="hover:text-blue-400 transition transform hover:scale-125">
                     <i class="fab fa-github text-2xl"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="hover:text-blue-400 transition">
+                <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="hover:text-blue-400 transition transform hover:scale-125">
                     <i class="fab fa-linkedin text-2xl"></i>
                 </a>
-                <a href="mailto:psbhaveshsharma@gmail.com" class="hover:text-blue-400 transition">
+                <a href="mailto:psbhaveshsharma@gmail.com" class="hover:text-blue-400 transition transform hover:scale-125">
                     <i class="fas fa-envelope text-2xl"></i>
                 </a>
             </div>
@@ -695,14 +1012,47 @@
             offset: 100
         });
 
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Parallax effects
+        gsap.utils.toArray('.parallax').forEach(layer => {
+            gsap.to(layer, {
+                yPercent: -50,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: layer,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        // Text reveal animations
+        gsap.utils.toArray('.reveal-text span').forEach((span, i) => {
+            gsap.from(span, {
+                scrollTrigger: {
+                    trigger: span,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 100,
+                duration: 0.8,
+                delay: i * 0.1
+            });
+        });
+
         // Initialize particles
         tsParticles.load("particles-js", {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#3b82f6" },
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: ["#3b82f6", "#60a5fa", "#93c5fd"] },
                 shape: { type: "circle" },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
+                opacity: { value: 0.6, random: true, animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false } },
+                size: { value: 3, random: true, animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false } },
                 line_linked: {
                     enable: true,
                     distance: 150,
@@ -717,25 +1067,33 @@
                     random: false,
                     straight: false,
                     out_mode: "out",
-                    bounce: false
+                    bounce: false,
+                    attract: { enable: false, rotateX: 600, rotateY: 1200 }
                 }
             },
             interactivity: {
                 detect_on: "canvas",
                 events: {
-                    onhover: { enable: true, mode: "repulse" },
+                    onhover: { enable: true, mode: "grab" },
                     onclick: { enable: true, mode: "push" },
                     resize: true
                 },
                 modes: {
-                    repulse: { distance: 100, duration: 0.4 },
+                    grab: { distance: 140, line_linked: { opacity: 1 } },
                     push: { particles_nb: 4 }
                 }
             },
             retina_detect: true
         });
 
-        // Dark mode toggle
+        // Custom cursor glow
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Dark mode toggle with enhanced background switching
         const darkModeToggle = document.getElementById('darkModeToggle');
         const html = document.documentElement;
         
@@ -748,6 +1106,12 @@
         darkModeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            
+            // Add a smooth transition effect
+            document.body.style.transition = 'all 0.5s ease';
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 500);
         });
 
         // Mobile menu toggle
@@ -817,23 +1181,47 @@
             }
         });
 
-        // Add animation classes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
+        // Tilt effect on hover
+        document.querySelectorAll('.tilt').forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
             
-            .animate-fadeIn {
-                animation: fadeIn 1s ease-out forwards;
-            }
-            
-            .animation-delay-1000 {
-                animation-delay: 1s;
-            }
-        `;
-        document.head.appendChild(style);
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Add dynamic loading animation to progress bars
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target.querySelector('.progress-bar');
+                    if (progressBar) {
+                        progressBar.style.animation = 'fillProgress 2s ease-out forwards';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            progressObserver.observe(card);
+        });
     </script>
 </body>
 </html>
