@@ -4,8 +4,18 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bhavesh Puranam</title>
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="favicon.ico" />
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS + enable dark mode -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {},
+      },
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- AOS CSS for scroll animations -->
@@ -13,64 +23,203 @@
     href="https://unpkg.com/aos@2.3.1/dist/aos.css"
     rel="stylesheet"
   />
+  
+  <!-- Basic reset for smooth scroll -->
+  <style>html { scroll-behavior: smooth; }</style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans scroll-smooth">
-  <!-- Hero -->
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+
+  <!-- Dark Mode Toggle -->
+  <button
+    id="theme-toggle"
+    class="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg z-50"
+    aria-label="Toggle Dark Mode"
+  >🌙/☀️</button>
+
+  <!-- Hero Section -->
   <header
     class="min-h-screen flex flex-col items-center justify-center px-4"
     data-aos="fade-down"
   >
-    <h1 class="text-5xl font-extrabold mb-4">Hi, I’m Bhavesh.</h1>
-    <p class="text-xl mb-6">Data Engineer &amp; AI/ML Enthusiast</p>
-    <a
-      href="#projects"
-      class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-    >
-      See my work ↓
-    </a>
+    <h1 class="text-5xl font-extrabold mb-4">Hi, I’m Bhavesh Puranam.</h1>
+    <p class="text-xl mb-6 max-w-xl text-center">
+      Aspiring AI/ML engineer and Data Enthusiast with hands-on experience in data engineering, machine learning, and full-stack development. Adept at building end-to-end intelligent systems — from data collection to model deployment :contentReference[oaicite:3]{index=3}.
+    </p>
+    <div class="flex space-x-4">
+      <a
+        href="#projects"
+        class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+      >
+        See my work ↓
+      </a>
+      <a
+        href="https://github.com/bhxvxshh"
+        target="_blank"
+        class="px-6 py-3 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:scale-105 transform transition"
+      >
+        GitHub
+      </a>
+    </div>
   </header>
 
   <!-- Projects -->
-  <section id="projects" class="max-w-5xl mx-auto py-16 px-4">
-    <h2 class="text-3xl font-semibold text-center mb-12" data-aos="fade-up">
-      Projects
-    </h2>
+  <section id="projects" class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-12" data-aos="fade-up">Projects</h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <li
-        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-aos="zoom-in"
-      >
-        <h3 class="text-2xl font-bold mb-2">LeafShield</h3>
-        <p>Deep-learning leaf disease classifier (97% accuracy).</p>
-      </li>
-      <li
-        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-aos="zoom-in"
-        data-aos-delay="100"
-      >
-        <h3 class="text-2xl font-bold mb-2">MailMind</h3>
-        <p>Real-time email summarizer & sentiment analyzer.</p>
-      </li>
-      <li
-        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-      >
+      <!-- NutriAI -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in">
         <h3 class="text-2xl font-bold mb-2">NutriAI</h3>
-        <p>Personalized nutrition recommender system.</p>
+        <p>AI-Driven Personalized Nutrition Coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI :contentReference[oaicite:4]{index=4}.</p>
+      </li>
+      <!-- LeafShield -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-2xl font-bold mb-2">LeafShield</h3>
+        <p>Custom CNN in TensorFlow for plant leaf disease classification (95%+ accuracy) :contentReference[oaicite:5]{index=5}.</p>
+      </li>
+      <!-- MailMind -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-2xl font-bold mb-2">MailMind</h3>
+        <p>NLP-based email summarizer & sentiment analyzer with BERT & FastAPI :contentReference[oaicite:6]{index=6}.</p>
+      </li>
+      <!-- PromptQuest -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="text-2xl font-bold mb-2">PromptQuest</h3>
+        <p>LLM Q&A & essay platform using LangChain, ChromaDB & Streamlit :contentReference[oaicite:7]{index=7}.</p>
+      </li>
+      <!-- GradeGuard -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in" data-aos-delay="400">
+        <h3 class="text-2xl font-bold mb-2">GradeGuard</h3>
+        <p>SVM-based student performance predictor with Flask-Mail alerts :contentReference[oaicite:8]{index=8}.</p>
+      </li>
+      <!-- SpendPredictor -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in" data-aos-delay="500">
+        <h3 class="text-2xl font-bold mb-2">SpendPredictor</h3>
+        <p>ARIMA & KMeans personal finance forecasting web app :contentReference[oaicite:9]{index=9}.</p>
+      </li>
+      <!-- File Navigator -->
+      <li class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition" data-aos="zoom-in" data-aos-delay="600">
+        <h3 class="text-2xl font-bold mb-2">File Navigator</h3>
+        <p>Cross-platform CLI file search tool using fuzzy matching :contentReference[oaicite:10]{index=10}.</p>
       </li>
     </ul>
   </section>
 
+  <!-- Internships -->
+  <section id="experience" class="py-16 px-4 bg-gray-100 dark:bg-gray-800">
+    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Internship Experience</h2>
+    <div class="max-w-4xl mx-auto space-y-8">
+      <!-- S2.AI -->
+      <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg" data-aos="fade-right">
+        <h3 class="text-2xl font-bold mb-2">Data Engineer Intern @ S2.AI</h3>
+        <p class="italic mb-4">Dec 2024 – Jan 2025 (Hybrid)</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Automated ETL pipelines in Python & SQL for large-scale ML workflows.</li>
+          <li>Annotated 5K+ samples with Roboflow/LabelIMG, boosting YOLOv5 accuracy +12%.</li>
+          <li>Built FastAPI endpoints to serve PyTorch models in production :contentReference[oaicite:11]{index=11}.</li>
+        </ul>
+      </div>
+      <!-- Pricol -->
+      <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg" data-aos="fade-left">
+        <h3 class="text-2xl font-bold mb-2">Python Developer Intern @ Pricol Ltd</h3>
+        <p class="italic mb-4">Dec 2023 (On-site)</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Built Arduino+Python RFID login system, cutting unauthorized access by 30%.</li>
+          <li>Created fuzzy-search file locator CLI, reducing retrieval time 40% :contentReference[oaicite:12]{index=12}.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-16 px-4">
+    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Skills</h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div data-aos="fade-right">
+        <h3 class="text-2xl font-bold mb-2">Proficient</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Python · SQL · Scikit-learn · Pandas · NumPy · Flask · FastAPI · Streamlit</li>
+          <li>Git · Jupyter · PostgreSQL · MySQL</li>
+        </ul>
+      </div>
+      <div data-aos="fade-left">
+        <h3 class="text-2xl font-bold mb-2">Familiar</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>PyTorch · TensorFlow · KMeans · SVM · ARIMA · Docker</li>
+          <li>LangChain · ChromaDB · OpenCV · Postman</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="py-16 px-4 bg-gray-100 dark:bg-gray-800">
+    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Education</h2>
+    <div class="max-w-4xl mx-auto space-y-6">
+      <div data-aos="fade-right">
+        <h3 class="text-2xl font-bold">B.Tech in CSE (AI & ML), SRM IST Chennai <span class="italic">’22–’26 (CGPA 8.12)</span></h3>
+        <p class="pl-4">Relevant Coursework: ML, Deep Learning, NLP, Compiler Design, Cloud Computing</p>
+      </div>
+      <div data-aos="fade-left">
+        <h3 class="text-2xl font-bold">Class XII, Velammal Matric Hr. Sec. School <span class="italic">– 2022</span></h3>
+        <p class="pl-4">First Class (Computer Science Stream)</p>
+      </div>
+      <div data-aos="fade-right">
+        <h3 class="text-2xl font-bold">Class X, Velammal Matric Hr. Sec. School <span class="italic">– 2020</span></h3>
+        <p class="pl-4">First Class; 1st Prize in School Chess Tournament</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="py-16 px-4">
+    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Certifications</h2>
+    <ul class="max-w-4xl mx-auto list-disc pl-5 space-y-4">
+      <li data-aos="fade-up" data-aos-delay="100">
+        <strong>Cyber Intelligence in Robotics</strong> – MIT Square, Mar 2024 (Credential ID 202405CI28)
+      </li>
+      <li data-aos="fade-up" data-aos-delay="200">
+        <strong>AWS Cloud Practitioner</strong> – AWS, Feb 2024
+      </li>
+      <li data-aos="fade-up" data-aos-delay="300">
+        <strong>Python 101 for Data Science</strong> – IBM Skills Network, Nov 2022
+      </li>
+    </ul>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="py-12 bg-gray-200 dark:bg-gray-800 text-center px-4">
+    <h2 class="text-2xl font-semibold mb-4" data-aos="fade-up">Get in Touch</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      📧 <a href="mailto:psbhaveshsharma@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">psbhaveshsharma@gmail.com</a>  
+      | 📱 +91 63854 97381  
+    </p>
+    <p class="mt-4 space-x-4" data-aos="fade-up" data-aos-delay="200">
+      <a href="https://linkedin.com/in/bhavesh-puranam" target="_blank" class="text-blue-700 dark:text-blue-300 hover:underline">LinkedIn</a>
+      <a href="https://github.com/bhxvxshh" target="_blank" class="text-gray-800 dark:text-gray-200 hover:underline">GitHub</a>
+    </p>
+  </footer>
+
   <!-- AOS & GSAP -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
+  <script> AOS.init({ duration: 800, once: true }); </script>
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script>
     gsap.from("h1", { y: -60, opacity: 0, duration: 1.2, ease: "power3.out" });
   </script>
-</body>
 
+  <!-- Dark-mode toggle logic -->
+  <script>
+    // On load: apply saved theme or OS preference
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) document.documentElement.classList.add('dark');
+    // Toggle button
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    });
+  </script>
+</body>
 </html>
