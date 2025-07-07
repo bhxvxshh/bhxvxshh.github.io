@@ -9,284 +9,244 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
 
   <!-- Tailwind CSS + dark-mode config -->
-  <script>
-    tailwind.config = { darkMode: 'class' }
-  </script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- AOS CSS -->
-  <link
-    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-    rel="stylesheet"
-  />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 
-  <!-- VanillaTilt for 3D card tilt -->
+  <!-- VanillaTilt for 3D tilt -->
   <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
 
-  <!-- Progress bar + smooth scroll + font -->
+  <!-- Scroll-Snap, Progress Bar & Smooth Scroll Styles -->
   <style>
-    html { scroll-behavior: smooth; }
+    html { scroll-snap-type: y mandatory; overflow-y: scroll; scroll-behavior: smooth; }
+    section { scroll-snap-align: start; }
     body { font-family: 'Poppins', sans-serif; }
-    #progress {
-      position: fixed; top: 0; left: 0; height: 4px;
-      background: #2563EB; width: 0; z-index: 50;
-    }
+    #progress { position: fixed; top: 0; left: 0; height: 4px; background: #2563EB; width: 0; z-index: 50; }
+    .divider { width: 100%; height: 80px; display: block; background-size: cover; }
   </style>
 </head>
-
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-  <!-- Scroll Progress Bar -->
+  <!-- Progress Bar -->
   <div id="progress"></div>
 
   <!-- Dark Mode Toggle -->
-  <button
-    id="theme-toggle"
-    class="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg z-50"
-    aria-label="Toggle Dark Mode"
-  >
-    🌙/☀️
-  </button>
+  <button id="theme-toggle" class="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg z-50" aria-label="Toggle Dark Mode">🌙/☀️</button>
 
-  <!-- Hero with Parallax Background -->
-  <header class="relative overflow-hidden">
-    <div
-      id="parallax-bg"
-      class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500"
-    ></div>
-    <div
-      class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4"
-      data-aos="fade-down"
-    >
-      <h1 id="typewriter" class="text-5xl font-extrabold mb-4 text-white dark:text-white"></h1>
-      <p class="text-xl mb-6 max-w-xl text-center text-white dark:text-gray-200">
-        Aspiring AI/ML engineer and Data Enthusiast with hands-on experience in data engineering, machine learning, and full-stack development. Adept at building end-to-end intelligent systems — from data collection to model deployment.
-      </p>
-      <div class="flex space-x-4">
-        <a
-          href="#projects"
-          class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >See my work ↓</a
-        >
-        <a
-          href="https://github.com/bhxvxshh"
-          target="_blank"
-          class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:scale-105 transform transition"
-          >GitHub</a
-        >
+  <!-- Hero Section -->
+  <section id="hero" class="relative flex items-center justify-center min-h-screen px-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+    <div class="container mx-auto flex flex-col-reverse md:flex-row items-center">
+      <!-- Text -->
+      <div class="md:w-1/2 text-center md:text-left space-y-4 text-white" data-aos="fade-right">
+        <h1 id="typewriter" class="text-5xl font-extrabold"></h1>
+        <p class="max-w-md mx-auto md:mx-0 text-lg">
+          Aspiring AI/ML engineer & Data Enthusiast with hands-on experience in data engineering, machine learning & full-stack development.
+        </p>
+      </div>
+      <!-- Image -->
+      <div class="md:w-1/2 flex justify-center mb-8 md:mb-0" data-aos="fade-left">
+        <img src="Bp.jpg" alt="Bhavesh Puranam" class="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-2xl border-4 border-white hover:scale-105 transition" data-tilt data-tilt-glare data-tilt-max-glare="0.3"/>
       </div>
     </div>
-  </header>
+    <a href="#bio" class="absolute bottom-8 animate-bounce text-white text-2xl">↓</a>
+  </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-16 px-4 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-semibold text-center mb-12" data-aos="fade-up">Projects</h2>
+  <!-- Divider -->
+  <div class="divider" style="background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1440 80\"><path fill=\"%23f3f4f6\" d=\"M0,0 C480,80 960,0 1440,80 L1440,80 L0,80 Z\"></path></svg>') no-repeat bottom; background-size:cover;"></div>
+
+  <!-- About Me -->
+  <section id="bio" class="py-20 px-4 bg-white dark:bg-gray-800" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto space-y-6 text-center md:text-left">
+      <h2 class="text-3xl font-bold">About Me</h2>
+      <p>
+        Hello! I’m <strong>Bhavesh Puranam</strong>, currently pursuing B.Tech in Computer Science (AI & ML specialization) at SRM Institute of Science and Technology, Chennai fileciteturn2file2.
+        I’ve interned at S2.AI and Pricol Ltd, where I built scalable ETL pipelines, annotated 5K+ samples to boost model accuracy, deployed ML models via FastAPI, and developed RFID & IoT solutions fileciteturn2file2.
+      </p>
+      <div class="flex flex-wrap justify-center md:justify-start gap-4">
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">Python</span>
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">SQL</span>
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">Scikit-learn</span>
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">Pandas</span>
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">FastAPI</span>
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">Streamlit</span>
+        <span class="px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded-full">Docker</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider Flip -->
+  <div class="divider rotate-180" style="background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1440 80\"><path fill=\"%23f3f4f6\" d=\"M0,0 C480,80 960,0 1440,80 L1440,80 L0,80 Z\"></path></svg>') no-repeat bottom; background-size:cover;"></div>
+
+  <!-- Projects -->
+  <section id="projects" class="py-16 px-4 max-w-6xl mx-auto bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in"
-      >
+      <!-- NutriAI -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in">
         <h3 class="text-2xl font-bold mb-2">NutriAI</h3>
-        <p>AI-Driven Personalized Nutrition Coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI.</p>
+        <p>Engineered a personalized nutrition system with YOLOv8, LLaMA 3.2, HGNN & FastAPI; achieved 91% precision & 89% F1-score fileciteturn2file0.</p>
       </li>
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in" data-aos-delay="100"
-      >
+      <!-- LeafShield -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in" data-aos-delay="100">
         <h3 class="text-2xl font-bold mb-2">LeafShield</h3>
-        <p>Custom CNN in TensorFlow for plant leaf disease classification (95%+ accuracy).</p>
+        <p>Designed a custom CNN & OpenCV pipeline to classify 12 plant diseases with 95% accuracy via TensorFlow fileciteturn2file0.</p>
       </li>
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in" data-aos-delay="200"
-      >
+      <!-- MailMind -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in" data-aos-delay="200">
         <h3 class="text-2xl font-bold mb-2">MailMind</h3>
-        <p>NLP-based email summarizer & sentiment analyzer with BERT & FastAPI.</p>
+        <p>Built an NLP pipeline with BERT & spaCy for email summarization & sentiment analysis, exposing via FastAPI & Streamlit fileciteturn2file3.</p>
       </li>
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in" data-aos-delay="300"
-      >
+      <!-- PromptQuest -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in" data-aos-delay="300">
         <h3 class="text-2xl font-bold mb-2">PromptQuest</h3>
-        <p>LLM Q&A & essay platform using LangChain, ChromaDB & Streamlit.</p>
+        <p>Created a LangChain + ChromaDB essay & policy Q&A platform with Ollama LLMs & Streamlit interface fileciteturn2file3.</p>
       </li>
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in" data-aos-delay="400"
-      >
+      <!-- GradeGuard -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in" data-aos-delay="400">
         <h3 class="text-2xl font-bold mb-2">GradeGuard</h3>
-        <p>SVM-based student performance predictor with Flask-Mail alerts.</p>
+        <p>Implemented SVM model & Flask-Mail alerts to predict student performance and send progress tips fileciteturn2file1.</p>
       </li>
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in" data-aos-delay="500"
-      >
+      <!-- SpendPredictor -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in" data-aos-delay="500">
         <h3 class="text-2xl font-bold mb-2">SpendPredictor</h3>
-        <p>ARIMA & KMeans personal finance forecasting web app.</p>
+        <p>Forecasted personal finance with ARIMA & KMeans in Flask app, enabling budget simulations & clustering fileciteturn2file1.</p>
       </li>
-      <li
-        class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition col-span-full md:col-span-2 lg:col-span-1"
-        data-tilt data-tilt-glare data-tilt-max-glare="0.2"
-        data-aos="zoom-in" data-aos-delay="600"
-      >
+      <!-- File Navigator -->
+      <li class="project-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transform hover:scale-[1.02] transition col-span-full md:col-span-2 lg:col-span-1" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-aos="zoom-in" data-aos-delay="600">
         <h3 class="text-2xl font-bold mb-2">File Navigator</h3>
-        <p>Cross-platform CLI file search tool using fuzzy matching.</p>
+        <p>Developed a cross-platform CLI using Python & difflib for fuzzy file search across nested structures fileciteturn2file1.</p>
       </li>
     </ul>
   </section>
 
   <!-- Internship Experience -->
-  <section id="experience" class="py-16 px-4 bg-gray-100 dark:bg-gray-800">
-    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Internship Experience</h2>
+  <section id="experience" class="py-16 px-4 bg-gray-100 dark:bg-gray-800" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-center mb-8">Internship Experience</h2>
     <div class="max-w-4xl mx-auto space-y-8">
       <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg" data-aos="fade-right">
         <h3 class="text-2xl font-bold mb-1">Data Engineer Intern @ S2.AI</h3>
         <p class="italic mb-3">Dec 2024 – Jan 2025 (Hybrid)</p>
         <ul class="list-disc pl-5 space-y-2">
-          <li>Automated ETL pipelines in Python & SQL for large-scale ML workflows.</li>
-          <li>Annotated 5K+ samples with Roboflow/LabelIMG, boosting YOLOv5 accuracy +12%.</li>
-          <li>Built FastAPI endpoints to serve PyTorch models in production.</li>
+          <li>Built and automated ETL pipelines using Python & SQL for large-scale ML workflows fileciteturn2file2.</li>
+          <li>Annotated over 5K samples with Roboflow & LabelIMG, boosting YOLOv5 accuracy by 12% fileciteturn2file2.</li>
+          <li>Developed and fine-tuned PyTorch models & deployed them via FastAPI endpoints fileciteturn2file2.</li>
         </ul>
       </div>
       <div class="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg" data-aos="fade-left">
         <h3 class="text-2xl font-bold mb-1">Python Developer Intern @ Pricol Ltd</h3>
         <p class="italic mb-3">Dec 2023 (On-site)</p>
         <ul class="list-disc pl-5 space-y-2">
-          <li>Built Arduino+Python RFID login system, cutting unauthorized access by 30%.</li>
-          <li>Created fuzzy-search file locator CLI, reducing retrieval time 40%.</li>
+          <li>Developed Arduino+Python RFID employee login system; reduced unauthorized access by 30% fileciteturn2file2.</li>
+          <li>Built fuzzy-search file locator CLI tool, cutting file retrieval time by 40% fileciteturn2file2.</li>
+          <li>Gained hands-on IoT access monitoring experience in cluster manufacturing environments fileciteturn2file2.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-16 px-4">
-    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Skills</h2>
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 px-4" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-center mb-8">Skills</h2>
     <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
       <div data-aos="fade-right">
         <h3 class="text-2xl font-bold mb-2">Proficient</h3>
         <ul class="list-disc pl-5 space-y-1">
-          <li>Python · SQL · Scikit-learn · Pandas · NumPy · Flask · FastAPI · Streamlit</li>
-          <li>Git · Jupyter · PostgreSQL · MySQL</li>
+          <li>Python · SQL · Scikit-learn · Pandas · NumPy · Flask · FastAPI · Streamlit · Git · Jupyter · PostgreSQL · MySQL fileciteturn2file2</li>
         </ul>
       </div>
       <div data-aos="fade-left">
         <h3 class="text-2xl font-bold mb-2">Familiar</h3>
         <ul class="list-disc pl-5 space-y-1">
-          <li>PyTorch · TensorFlow · KMeans · SVM · ARIMA · Docker</li>
-          <li>LangChain · ChromaDB · OpenCV · Postman</li>
+          <li>PyTorch · TensorFlow · KMeans · SVM · ARIMA · Docker · LangChain · ChromaDB · OpenCV · Postman fileciteturn2file2</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Education -->
-  <section id="education" class="py-16 px-4 bg-gray-100 dark:bg-gray-800">
-    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Education</h2>
+  <!-- Education Section -->
+  <section id="education" class="py-16 px-4 bg-gray-100 dark:bg-gray-800" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-center mb-8">Education</h2>
     <div class="max-w-4xl mx-auto space-y-6">
       <div data-aos="fade-right">
-        <h3 class="text-2xl font-bold">B.Tech in CSE (AI & ML), SRM IST Chennai ’22–’26 <span class="italic">(CGPA 8.12)</span></h3>
-        <p class="pl-4">Relevant Coursework: ML, Deep Learning, NLP, Compiler Design, Cloud Computing</p>
+        <h3 class="text-2xl font-bold">B.Tech – Computer Science (AI & ML), SRM IST Chennai</h3>
+        <p class="italic">Expected 2026, CGPA: 8.12</p>
+        <p>Relevant Coursework: Machine Learning, Deep Learning, NLP, Compiler Design, Cloud Computing, Data Structures fileciteturn2file2</p>
       </div>
       <div data-aos="fade-left">
-        <h3 class="text-2xl font-bold">Class XII, Velammal Matric Hr. Sec. School – 2022</h3>
-        <p class="pl-4">First Class (Computer Science Stream)</p>
+        <h3 class="text-2xl font-bold">Higher Secondary (Class XII), Velammal Matric Hr. Sec. School, Chennai</h3>
+        <p class="italic">2022 – First Class, Computer Science Stream fileciteturn2file2</p>
       </div>
       <div data-aos="fade-right">
-        <h3 class="text-2xl font-bold">Class X, Velammal Matric Hr. Sec. School – 2020</h3>
-        <p class="pl-4">First Class; 1st Prize in School Chess Tournament</p>
+        <h3 class="text-2xl font-bold">Secondary (Class X), Velammal Matric Hr. Sec. School, Chennai</h3>
+        <p class="italic">2020 – First Class; 1st Prize in School Chess Tournament fileciteturn2file2</p>
       </div>
     </div>
   </section>
 
-  <!-- Certifications -->
-  <section id="certifications" class="py-16 px-4">
-    <h2 class="text-3xl font-semibold text-center mb-8" data-aos="fade-up">Certifications</h2>
+  <!-- Certifications Section -->
+  <section id="certifications" class="py-16 px-4" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold text-center mb-8">Certifications</h2>
     <ul class="max-w-4xl mx-auto list-disc pl-5 space-y-4">
       <li data-aos="fade-up" data-aos-delay="100">
-        <strong>Cyber Intelligence in Robotics</strong> – MIT Square, Mar 2024
+        <strong>Cyber Intelligence in Robotics</strong> – MIT Square, Mar 2024 (Credential ID: 202405CI28) fileciteturn2file1
       </li>
       <li data-aos="fade-up" data-aos-delay="200">
-        <strong>AWS Cloud Practitioner</strong> – AWS, Feb 2024
+        <strong>AWS Cloud Practitioner</strong> – Amazon Web Services, Feb 2024 fileciteturn2file1
       </li>
       <li data-aos="fade-up" data-aos-delay="300">
-        <strong>Python 101 for Data Science</strong> – IBM Skills Network, Nov 2022
+        <strong>Python 101 for Data Science</strong> – IBM Skills Network, Nov 2022 (Credential ID: 705b91f8a8874f73adcc97b7df708551) fileciteturn2file1
       </li>
     </ul>
   </section>
 
   <!-- Contact Footer -->
-  <footer class="py-12 bg-gray-200 dark:bg-gray-800 text-center px-4">
-    <h2 class="text-2xl font-semibold mb-4" data-aos="fade-up">Get in Touch</h2>
-    <p class="space-x-4" data-aos="fade-up" data-aos-delay="100">
-      📧 <a href="mailto:psbhaveshsharma@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">psbhaveshsharma@gmail.com</a>
-      | 📱 +91 63854 97381
-    </p>
-    <p class="mt-4 space-x-6" data-aos="fade-up" data-aos-delay="200">
-      <a href="https://linkedin.com/in/bhavesh-puranam" target="_blank" class="hover:underline">LinkedIn</a>
+  <footer class="py-12 bg-gray-200 dark:bg-gray-800 text-center px-4" data-aos="fade-up">
+    <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
+    <p>📧 <a href="mailto:psbhaveshsharma@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">psbhaveshsharma@gmail.com</a>   |   📱 +91 6385497381</p>
+    <p class="mt-4 space-x-6">
+      <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="hover:underline">LinkedIn</a>
       <a href="https://github.com/bhxvxshh" target="_blank" class="hover:underline">GitHub</a>
     </p>
   </footer>
 
-  <!-- AOS & GSAP -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script> AOS.init({ duration: 800, once: true }); </script>
+  <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script>
-    // GSAP hero tween
-    gsap.from("#typewriter", { y: -60, opacity: 0, duration: 1.2, ease: "power3.out" });
-
-    // Typewriter effect
+    // Typewriter Effect
     const txt = "Hi, I’m Bhavesh Puranam.";
     let i = 0;
-    function type() {
+    function typew() {
       if (i < txt.length) {
-        document.getElementById("typewriter").textContent += txt.charAt(i++);
-        setTimeout(type, 100);
+        document.getElementById('typewriter').textContent += txt.charAt(i++);
+        setTimeout(typew, 100);
       }
     }
-    window.addEventListener("load", type);
+    window.addEventListener('load', typew);
 
-    // Parallax background
-    window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset;
-      document.getElementById("parallax-bg").style.transform =
-        "translateY(" + scrolled * 0.3 + "px)";
-
-      // Scroll progress bar
+    // Parallax & Progress
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset;
+      document.getElementById('hero').querySelector('div').style.transform = `translateY(${y * 0.3}px)`;
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      document.getElementById("progress").style.width =
-        (window.pageYOffset / total) * 100 + "%";
+      document.getElementById('progress').style.width = (y / total) * 100 + '%';
     });
 
-    // VanillaTilt on project cards
-    VanillaTilt.init(document.querySelectorAll(".project-card"), {
-      max: 10,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.2,
-    });
+    // AOS & GSAP
+    AOS.init({ duration: 800, once: true });
+    gsap.from('#typewriter',{ y:-50, opacity:0, duration:1.2, ease:'power3.out' });
 
-    // Dark-mode toggle
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
+    // Dark-mode Toggle
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
     }
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      localStorage.theme = document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
-    });
+    document.getElementById('theme-toggle').onclick = () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    };
   </script>
 </body>
 </html>
