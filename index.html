@@ -1,255 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bhavesh Puranam • Portfolio</title>
 
-  <!-- Poppins & Tailwind + Dark Mode -->
+  <!-- Fonts & Tailwind -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
   <script>tailwind.config={darkMode:'class'}</script>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS -->
+  <!-- AOS for scroll animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <!-- Particles.js for hero bg -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <style>
     body { font-family:'Poppins',sans-serif; }
-    html { scroll-behavior: smooth }
-    /* scroll-snap for services */
-    .snap-x { scroll-snap-type: x mandatory }
-    .snap-start { scroll-snap-align: start }
+    html { scroll-behavior:smooth; }
+    #particles-js { position:absolute; width:100%; height:100%; top:0; left:0; z-index:0; }
   </style>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-x-hidden">
 
-  <!-- dark toggle -->
-  <button id="theme-toggle" class="fixed top-4 right-4 p-2 bg-gray-100 dark:bg-gray-800 rounded-full shadow">
-    🌙/☀️
-  </button>
-
-  <!-- navbar -->
-  <nav class="sticky top-0 bg-white dark:bg-gray-900 bg-opacity-90 backdrop-blur z-50">
+  <!-- NAVIGATION -->
+  <nav class="fixed w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur z-50">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
       <div class="text-2xl font-bold text-indigo-600">BP</div>
-      <ul class="hidden md:flex space-x-8 text-gray-600 dark:text-gray-300">
-        <li><a href="#hero" class="hover:text-indigo-600">Home</a></li>
-        <li><a href="#about" class="hover:text-indigo-600">About</a></li>
-        <li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
-        <li><a href="#experience" class="hover:text-indigo-600">Experience</a></li>
+      <ul class="hidden md:flex space-x-8 text-gray-700 dark:text-gray-300">
+        <li><a href="#home"      class="hover:text-indigo-600">Home</a></li>
+        <li><a href="#about"     class="hover:text-indigo-600">About</a></li>
+        <li><a href="#skills"    class="hover:text-indigo-600">Skills</a></li>
+        <li><a href="#projects"  class="hover:text-indigo-600">Projects</a></li>
         <li><a href="#education" class="hover:text-indigo-600">Education</a></li>
-        <li><a href="#contact" class="hover:text-indigo-600">Contact</a></li>
+        <li><a href="#work"      class="hover:text-indigo-600">Work</a></li>
+        <li><a href="#timeline"  class="hover:text-indigo-600">Roadmap</a></li>
+        <li><a href="#contact"   class="hover:text-indigo-600">Contact</a></li>
       </ul>
-      <a href="#contact"
-         class="hidden md:inline-block px-5 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
-        Contact me
-      </a>
       <button id="nav-toggle" class="md:hidden text-2xl">☰</button>
     </div>
-    <div id="nav-menu" class="md:hidden px-6 pb-4 hidden bg-white dark:bg-gray-900">
-      <a href="#hero" class="block py-2">Home</a>
-      <a href="#about" class="block py-2">About</a>
-      <a href="#projects" class="block py-2">Projects</a>
-      <a href="#experience" class="block py-2">Experience</a>
+    <div id="nav-menu" class="md:hidden bg-white dark:bg-gray-900 px-6 pb-4 hidden">
+      <a href="#home"      class="block py-2">Home</a>
+      <a href="#about"     class="block py-2">About</a>
+      <a href="#skills"    class="block py-2">Skills</a>
+      <a href="#projects"  class="block py-2">Projects</a>
       <a href="#education" class="block py-2">Education</a>
-      <a href="#contact" class="block py-2">Contact</a>
+      <a href="#work"      class="block py-2">Work</a>
+      <a href="#timeline"  class="block py-2">Roadmap</a>
+      <a href="#contact"   class="block py-2">Contact</a>
     </div>
   </nav>
 
-  <!-- hero -->
-  <header id="hero" class="relative flex items-center justify-between h-screen px-6 overflow-hidden">
-    <!-- left text -->
-    <div class="max-w-xl space-y-4" data-aos="fade-right">
-      <div class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 font-semibold rounded-full">Hello!</div>
-      <h1 id="typewriter" class="text-5xl md:text-6xl font-extrabold mt-2"></h1>
-      <p class="text-gray-700 dark:text-gray-300 mb-6">
-        Data Engineer &amp; AI/ML Enthusiast<br/>
-        Building data pipelines, training models & deploying full-stack ML apps.
+  <!-- HERO -->
+  <section id="home" class="relative h-screen flex items-center justify-between px-6 md:px-20 overflow-hidden">
+    <div id="particles-js"></div>
+    <div class="relative z-10 max-w-xl space-y-4" data-aos="fade-right">
+      <h2 class="text-3xl text-indigo-500 font-semibold">Hello!</h2>
+      <h1 id="hero-title" class="text-5xl md:text-6xl font-extrabold leading-tight"></h1>
+      <p class="text-gray-700 dark:text-gray-300">
+        Data Engineer & AI/ML Enthusiast building end-to-end intelligent systems from data ingestion to model serving.
       </p>
       <div class="flex gap-4">
-        <a href="#projects"
+        <a href="#contact"
            class="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
-          Hire Me
+          Contact Me
         </a>
-        <a href="https://wa.me/916385497381"
+        <a href="#about"
            class="px-6 py-3 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition">
-          WhatsApp
+          About Me
         </a>
       </div>
     </div>
-
-    <!-- right graphic -->
-    <div class="relative w-80 h-80" data-aos="fade-left">
-      <!-- blob SVG -->
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
-           class="absolute w-full h-full filter blur-3xl opacity-60">
-        <path fill="#4f46e5" d="M40,-60C52,-48,62,-36,67,-22C72,-8,72,8,66,20C60,32,48,40,34,47C20,54,4,60,-12,60C-28,60,-56,54,-64,40C-72,26,-60,4,-56,-14C-52,-32,-56,-44,-52,-58C-48,-72,-36,-88,-20,-92C-4,-96,16,-88,40,-60Z" transform="translate(100 100)" />
-      </svg>
-      <img src="Bp.jpg" alt="Bhavesh"
-           class="relative w-80 h-80 object-cover rounded-full shadow-2xl"/>
+    <div class="relative z-10">
+      <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl mx-auto"
+           data-aos="fade-left">
+        <img src="Bp.jpg" alt="Bhavesh Puranam"
+             class="w-full h-full object-cover"/>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <!-- about -->
+  <!-- ABOUT -->
   <section id="about" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
-    <div class="max-w-xl mx-auto text-center space-y-4">
+    <div class="max-w-4xl mx-auto text-center space-y-6">
       <h2 class="text-3xl font-semibold">About Me</h2>
       <p class="text-gray-700 dark:text-gray-300">
-        I’m <strong>Bhavesh Puranam</strong>, B.Tech (AI & ML) at SRM IST Chennai. Interned at S2.AI & Pricol Ltd:
-        built ETL pipelines, annotated 5K+ samples, trained & deployed ML models via FastAPI, and developed IoT/RFID solutions.
+        I’m <strong>Bhavesh Puranam</strong>, B.Tech (AI & ML) student at SRM IST Chennai.  
+        Interned at S2.AI & Pricol Ltd: built Python & SQL ETL pipelines, annotated 5K+ samples (↑YOLOv5 +12%),  
+        deployed PyTorch models via FastAPI, and crafted IoT/RFID solutions.
       </p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-800 text-indigo-600 rounded-full">Python</span>
-        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-800 text-indigo-600 rounded-full">SQL</span>
-        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-800 text-indigo-600 rounded-full">FastAPI</span>
-        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-800 text-indigo-600 rounded-full">Docker</span>
-        <span class="px-4 py-1 bg-indigo-100 dark:bg-gray-800 text-indigo-600 rounded-full">Streamlit</span>
-      </div>
     </div>
   </section>
 
-  <!-- services scroll-snap -->
-  <section class="py-8 bg-indigo-600 overflow-x-auto snap-x px-6">
-    <div class="flex gap-8 w-max">
-      <div class="snap-start px-6 py-3 bg-indigo-500 rounded-full text-white">Data Engineering</div>
-      <div class="snap-start px-6 py-3 bg-indigo-500 rounded-full text-white">Machine Learning</div>
-      <div class="snap-start px-6 py-3 bg-indigo-500 rounded-full text-white">Web Dev</div>
-      <div class="snap-start px-6 py-3 bg-indigo-500 rounded-full text-white">Full-stack ML</div>
-      <div class="snap-start px-6 py-3 bg-indigo-500 rounded-full text-white">IoT & RFID</div>
-      <div class="snap-start px-6 py-3 bg-indigo-500 rounded-full text-white">Data Viz</div>
-    </div>
-  </section>
-
-  <!-- projects -->
-  <section id="projects" class="py-20 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- card example -->
-        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
-          <h3 class="text-xl font-bold mb-2">NutriAI</h3>
-          <p>Nutrition coach with YOLOv8, LLaMA & FastAPI—91% precision.</p>
+  <!-- SKILLS -->
+  <section id="skills" class="py-20 px-6" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-8">Skills</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/python.svg" alt="Python" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">Python</p>
         </div>
-        <!-- repeat for each project -->
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/sqlite.svg" alt="SQL" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">SQL</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/scikitlearn.svg" alt="Scikit-learn" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">Scikit-learn</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/pandas.svg" alt="Pandas" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">Pandas</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/fastapi.svg" alt="FastAPI" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">FastAPI</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/streamlit.svg" alt="Streamlit" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">Streamlit</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/tailwindcss.svg" alt="TailwindCSS" class="w-12 h-12 mx-auto"/>
+          <p class="mt-2">TailwindCSS</p>
+        </div>
+        <!-- add more skill cards here -->
       </div>
     </div>
   </section>
 
-  <!-- experience -->
-  <section id="experience" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-semibold text-center mb-12">Experience</h2>
+  <!-- PROJECTS -->
+  <section id="projects" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-semibold">Projects</h2>
+      <p class="text-gray-700 dark:text-gray-300">A selection of my AI/ML & full-stack work.</p>
+    </div>
+    <div class="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- NutriAI -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
+        <h3 class="text-xl font-bold mb-2">NutriAI</h3>
+        <p>Engineered AI-Driven personalized nutrition coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI; achieved 91% precision & 89% F1-score.</p>
+      </div>
+      <!-- LeafShield -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-2">LeafShield</h3>
+        <p>Designed custom CNN & OpenCV pipeline to classify 12 plant diseases with 95%+ accuracy via TensorFlow.</p>
+      </div>
+      <!-- MailMind -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-2">MailMind</h3>
+        <p>Built an NLP pipeline with BERT & spaCy for real-time email summarization & sentiment analysis; exposed via FastAPI & Streamlit.</p>
+      </div>
+      <!-- PromptQuest -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
+        <p>Created a LangChain + ChromaDB essay & policy Q&A platform with Ollama LLMs & Streamlit interface.</p>
+      </div>
+      <!-- GradeGuard -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="400">
+        <h3 class="text-xl font-bold mb-2">GradeGuard</h3>
+        <p>Implemented SVM model & Flask-Mail alerts to predict student performance and send progress tips.</p>
+      </div>
+      <!-- SpendPredictor -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="500">
+        <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
+        <p>Forecasted personal finance with ARIMA & KMeans in Flask app, enabling budgeting simulations & clustering.</p>
+      </div>
+      <!-- File Navigator -->
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="600">
+        <h3 class="text-xl font-bold mb-2">File Navigator</h3>
+        <p>Developed a cross-platform CLI using Python & difflib for fuzzy file search across nested structures.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="py-20 px-6" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <h2 class="text-3xl font-semibold">Education</h2>
       <div class="grid gap-8 md:grid-cols-2">
-        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
-          <h3 class="text-xl font-bold mb-1">Data Engineer Intern @ S2.AI</h3>
-          <p class="italic text-sm mb-3">Dec 2024–Jan 2025 (Hybrid)</p>
-          <ul class="list-disc pl-5 space-y-2">
-            <li>ETL pipelines in Python & SQL for large ML workflows.</li>
-            <li>Annotated 5K+ samples, boosting YOLOv5 by 12%.</li>
-            <li>Deployed PyTorch models via FastAPI.</li>
+        <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold">B.Tech in CSE (AI & ML)</h3>
+          <p class="italic mb-2">SRM IST Chennai • 2022–2026 (CGPA 8.12)</p>
+          <p>Relevant coursework: ML, Deep Learning, NLP, Compiler Design, Cloud Computing</p>
+        </div>
+        <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold">Class XII, CS Stream</h3>
+          <p class="italic mb-2">Velammal Matric Hr. Sec. School • 2022</p>
+          <p>First Class</p>
+        </div>
+        <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold">Class X</h3>
+          <p class="italic mb-2">Velammal Matric Hr. Sec. School • 2020</p>
+          <p>First Class; 1st Prize in School Chess Tournament</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK EXPERIENCE -->
+  <section id="work" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <h2 class="text-3xl font-semibold">Work Experience</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold">Data Engineer Intern @ S2.AI</h3>
+          <p class="italic mb-3">Dec 2024 – Jan 2025 (Hybrid)</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+            <li>Automated ETL pipelines in Python & SQL for large-scale ML workflows</li>
+            <li>Annotated 5K+ samples with Roboflow/LabelIMG, boosting YOLOv5 accuracy by 12%</li>
+            <li>Built FastAPI endpoints to serve PyTorch models in production</li>
           </ul>
         </div>
-        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="100">
-          <h3 class="text-xl font-bold mb-1">Python Dev Intern @ Pricol Ltd</h3>
-          <p class="italic text-sm mb-3">Dec 2023 (On-site)</p>
-          <ul class="list-disc pl-5 space-y-2">
-            <li>Arduino+Python RFID system; –30% unauthorized access.</li>
-            <li>Fuzzy-search file locator CLI; –40% retrieval time.</li>
-            <li>IoT monitoring in manufacturing clusters.</li>
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold">Python Developer Intern @ Pricol Ltd</h3>
+          <p class="italic mb-3">Dec 2023 (On-site)</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+            <li>Built Arduino+Python RFID login system; cut unauthorized access by 30%</li>
+            <li>Created fuzzy-search file locator CLI; reduced retrieval time by 40%</li>
+            <li>Gained hands-on IoT monitoring experience in manufacturing clusters</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- education -->
-  <section id="education" class="py-20 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-semibold text-center mb-12">Education</h2>
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in">
-          <h3 class="text-xl font-bold mb-1">B.Tech CSE (AI & ML)</h3>
-          <p class="italic">SRM IST Chennai • 2022–2026 (CGPA 8.12)</p>
+  <!-- ROADMAP TIMELINE -->
+  <section id="timeline" class="py-20 px-6" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <h2 class="text-3xl font-semibold">Roadmap & Timeline</h2>
+      <div class="relative before:absolute before:top-20 before:left-1/2 before:-translate-x-1/2 before:h-full before:w-1 before:bg-indigo-600">
+        <!-- S2.AI -->
+        <div class="md:flex md:justify-start mb-12">
+          <div class="md:w-1/2 pr-8 text-left">
+            <div class="inline-block p-4 bg-indigo-600 text-white rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 20l-5.447-2.724A2 2 0 013 15.382V5a2 2 0 011-1.732L9 1l6 3.268A2 2 0 0116 5v10.382a2 2 0 01-1.553 1.894L9 20z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mt-2">Data Engineer Intern @ S2.AI</h3>
+            <p class="italic text-sm">Dec 2024 – Jan 2025</p>
+          </div>
         </div>
-        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="100">
-          <h3 class="text-xl font-bold mb-1">Class XII</h3>
-          <p class="italic">Velammal Matric Hr. Sec. • 2022</p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition" data-aos="zoom-in" data-aos-delay="200">
-          <h3 class="text-xl font-bold mb-1">Class X</h3>
-          <p class="italic">Velammal Matric Hr. Sec. • 2020</p>
+        <!-- Pricol Ltd -->
+        <div class="md:flex md:justify-end mb-12">
+          <div class="md:w-1/2 pl-8 text-left">
+            <div class="inline-block p-4 bg-indigo-600 text-white rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 11c0 3.314-2.686 6-6 6m18 0c0-3.314-2.686-6-6-6M12 11V6m6 5V6"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mt-2">Python Dev Intern @ Pricol Ltd</h3>
+            <p class="italic text-sm">Dec 2023</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- certifications -->
-  <section id="certifications" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-semibold text-center mb-8">Certifications</h2>
-      <ul class="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
-        <li>Cyber Intelligence in Robotics – MIT Square, Mar 2024 (ID 202405CI28)</li>
-        <li>AWS Cloud Practitioner – AWS, Feb 2024</li>
-        <li>Python 101 for Data Science – IBM Skills Network, Nov 2022</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- contact -->
-  <section id="contact" class="py-20 px-6 bg-white dark:bg-gray-800" data-aos="fade-up">
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 px-6 bg-gray-50 dark:bg-gray-900" data-aos="fade-up">
     <div class="max-w-6xl mx-auto grid gap-8 lg:grid-cols-2">
-      <!-- map -->
+      <!-- Google Map -->
       <div class="rounded-2xl overflow-hidden shadow-lg">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!...YOUR_EMBED_CODE..."
-          class="w-full h-80" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." 
+                class="w-full h-full min-h-[300px]" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
-      <!-- form -->
+      <!-- Form -->
       <form action="https://formspree.io/f/your-form-id" method="POST"
-            class="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl shadow-lg space-y-4">
-        <h2 class="text-2xl font-semibold mb-4 text-center">Say Hello</h2>
-        <input name="name" placeholder="Your Name" required
-               class="w-full p-3 bg-white dark:bg-gray-800 border rounded"/>
-        <input type="email" name="email" placeholder="Your Email" required
-               class="w-full p-3 bg-white dark:bg-gray-800 border rounded"/>
-        <textarea name="message" rows="4" placeholder="Your Message" required
-                  class="w-full p-3 bg-white dark:bg-gray-800 border rounded"></textarea>
+            class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg space-y-4">
+        <h2 class="text-2xl font-semibold text-center mb-4">Get In Touch</h2>
+        <input name="name"    placeholder="Name" required class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"/>
+        <input name="email"   type="email" placeholder="Email" required class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"/>
+        <input name="phone"   placeholder="Phone" class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"/>
+        <textarea name="message" rows="4" placeholder="Message"
+                  class="w-full p-3 bg-gray-100 dark:bg-gray-700 rounded"></textarea>
         <button type="submit"
                 class="w-full py-3 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">
-          Send Message
+          Submit
         </button>
       </form>
     </div>
   </section>
 
-  <!-- footer -->
+  <!-- FOOTER -->
   <footer class="py-8 text-center text-gray-600 dark:text-gray-400">
     © 2025 Bhavesh Puranam
   </footer>
 
-  <!-- scripts -->
+  <!-- SCRIPTS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration:700, once:true });
+    // AOS
+    AOS.init({ duration: 700, once: true });
 
-    // typewriter
-    const txt="Hi, I’m Bhavesh Puranam.";
-    let i=0, el=document.getElementById("typewriter");
-    (function type(){ if(i<txt.length) el.textContent+=txt[i++], setTimeout(type,100); })();
+    // Typewriter effect
+    const txt = "I’m Bhavesh Puranam.";
+    let i = 0, el = document.getElementById("hero-title");
+    (function type(){ if(i<txt.length) el.textContent += txt[i++], setTimeout(type,100); })();
 
-    // dark toggle
-    const tg=document.getElementById("theme-toggle");
-    if(localStorage.theme==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme:dark)').matches))
-      document.documentElement.classList.add('dark');
-    tg.addEventListener('click',()=>{
-      document.documentElement.classList.toggle('dark');
-      localStorage.theme=document.documentElement.classList.contains('dark')?'dark':'light';
+    // Particles.js
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80 },
+        "size":   { "value": 3 },
+        "move":   { "speed": 1 },
+        "line_linked": { "enable": false }
+      },
+      "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": "repulse" } }
+      }
     });
 
-    // mobile nav
+    // Mobile nav toggle
     document.getElementById("nav-toggle")
-      .addEventListener("click",()=>document.getElementById("nav-menu").classList.toggle("hidden"));
+      .addEventListener("click", ()=> document.getElementById("nav-menu").classList.toggle("hidden"));
   </script>
 </body>
 </html>
