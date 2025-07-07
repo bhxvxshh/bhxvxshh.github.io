@@ -30,7 +30,8 @@
             --bg-secondary: #f3f4f6;
             --bg-tertiary: #e5e7eb;
             --text-primary: #111827;
-            --text-secondary: #6b7280;
+            --text-secondary: #4b5563;
+            --text-tertiary: #1f2937;
             --accent: #3b82f6;
             --card-bg: #ffffff;
             --nav-bg: rgba(255, 255, 255, 0.9);
@@ -42,6 +43,7 @@
             --bg-tertiary: #334155;
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
+            --text-tertiary: #cbd5e1;
             --accent: #60a5fa;
             --card-bg: #1e293b;
             --nav-bg: rgba(15, 23, 42, 0.9);
@@ -92,10 +94,18 @@
         .typewriter {
             overflow: hidden;
             border-right: .15em solid var(--accent);
-            white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .15em;
             animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            white-space: normal;
+            display: inline-block;
+            max-width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .typewriter {
+                white-space: nowrap;
+            }
         }
         
         @keyframes typing {
@@ -385,6 +395,7 @@
                     <a href="#education" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Education</a>
                     <a href="#timeline" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Timeline</a>
                     <a href="#certifications" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Certifications</a>
+                    <a href="#tweets" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Resources</a>
                     <a href="#contact" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
                     
                     <!-- Dark mode toggle -->
@@ -409,6 +420,7 @@
                 <a href="#education" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Education</a>
                 <a href="#timeline" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Timeline</a>
                 <a href="#certifications" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Certifications</a>
+                <a href="#tweets" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Resources</a>
                 <a href="#contact" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
             </div>
         </div>
@@ -420,10 +432,10 @@
         <div class="blob"></div>
         <div class="blob"></div>
         <div class="relative z-10 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 float-animation">
+            <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 float-animation px-4">
                 <span class="typewriter">I'm Bhavesh Puranam.</span>
             </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-400 mt-8 reveal-text">
+            <p class="text-xl text-gray-700 dark:text-gray-400 mt-8 reveal-text">
                 <span style="animation-delay: 3s">AI/ML Engineer</span>
                 <span style="animation-delay: 3.2s"> • </span>
                 <span style="animation-delay: 3.4s">Data Scientist</span>
@@ -446,7 +458,7 @@
                     <img src="Bp.jpg" alt="Bhavesh Puranam" class="rounded-lg shadow-xl w-full max-w-md mx-auto float-animation">
                 </div>
                 <div data-aos="fade-left" data-aos-duration="1500">
-                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 parallax">
+                    <p class="text-lg leading-relaxed text-gray-800 dark:text-gray-300 parallax">
                         Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology. 
                         Passionate about solving real-world problems through innovative solutions in AI, data science, and web development. 
                         Proficient in building intelligent systems, interactive applications, and scalable solutions. 
@@ -583,7 +595,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">NutriAI</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">AI-Driven Personalized Nutrition Coach with YOLOv8, LLaMA 3.2</p>
+                        <p class="text-gray-700 dark:text-gray-400 mb-4">AI-Driven Personalized Nutrition Coach with YOLOv8, LLaMA 3.2</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
                                 <span>Tech Stack</span>
@@ -612,7 +624,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">LeafShield</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Deep Learning-Based Plant Leaf Disease Classifier</p>
+                        <p class="text-gray-700 dark:text-gray-400 mb-4">Deep Learning-Based Plant Leaf Disease Classifier</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
                                 <span>Accuracy</span>
@@ -633,15 +645,15 @@
                     </div>
                 </div>
 
-                <!-- MailMind -->
+                <!-- ContextMail -->
                 <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="400">
                     <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden">
                         <i class="fas fa-envelope-open-text text-6xl text-white float-animation"></i>
                         <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">MailMind</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">NLP-Based Email Extraction & Summarization System</p>
+                        <h3 class="text-xl font-bold mb-2">ContextMail</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">NLP-Based Email Extraction & Context System</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
                                 <span>Efficiency</span>
@@ -656,22 +668,22 @@
                             <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">spaCy</span>
                             <span class="text-xs bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 px-2 py-1 rounded transform hover:scale-110 transition">Streamlit</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/mailmind" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                        <a href="https://github.com/bhxvxshh/ContextMail-" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
                             View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- More projects with similar enhanced styling... -->
-                <!-- PromptQuest -->
+                <!-- DocChat -->
                 <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="600">
                     <div class="h-48 bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-robot text-6xl text-white float-animation"></i>
+                        <i class="fas fa-comments text-6xl text-white float-animation"></i>
                         <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">AI Essay & Policy Q&A Platform with RAG</p>
+                        <h3 class="text-xl font-bold mb-2">DocChat</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">AI-Powered Document Q&A Platform</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
                                 <span>AI Integration</span>
@@ -683,10 +695,10 @@
                         </div>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 px-2 py-1 rounded transform hover:scale-110 transition">LangChain</span>
-                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">Ollama</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">RAG</span>
                             <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">ChromaDB</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/promptquest" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                        <a href="https://github.com/bhxvxshh/DocChat" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
                             View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
@@ -715,20 +727,20 @@
                             <span class="text-xs bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 px-2 py-1 rounded transform hover:scale-110 transition">Flask</span>
                             <span class="text-xs bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 px-2 py-1 rounded transform hover:scale-110 transition">Flask-Mail</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/gradeguard" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                        <a href="https://github.com/bhxvxshh/GradeGuard-" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
                             View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- SpendPredictor -->
+                <!-- SmartSpending -->
                 <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="1000">
                     <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center relative overflow-hidden">
                         <i class="fas fa-chart-line text-6xl text-white float-animation"></i>
                         <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
+                        <h3 class="text-xl font-bold mb-2">SmartSpending</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-4">Personal Finance Forecasting App</p>
                         <div class="mb-4">
                             <div class="flex justify-between text-sm mb-1">
@@ -744,7 +756,65 @@
                             <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">KMeans</span>
                             <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">Flask</span>
                         </div>
-                        <a href="https://github.com/bhxvxshh/spendpredictor" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                        <a href="https://github.com/bhxvxshh/SmartSpending" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- File Navigator -->
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="1200">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-folder-open text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">File Navigator</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Cross-Platform File Search Tool</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Performance</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">Python</span>
+                            <span class="text-xs bg-cyan-100 dark:bg-cyan-900 text-cyan-600 dark:text-cyan-300 px-2 py-1 rounded transform hover:scale-110 transition">CLI</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">difflib</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/File_Navigator" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PromptQuest -->
+                <div class="project-card card-bg rounded-lg shadow-lg overflow-hidden tilt" data-aos="flip-left" data-aos-duration="1500" data-aos-delay="1400">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-robot text-6xl text-white float-animation"></i>
+                        <div class="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">AI Essay & Policy Q&A Platform</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>AI Integration</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-purple-500 to-indigo-500 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 px-2 py-1 rounded transform hover:scale-110 transition">LangChain</span>
+                            <span class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 px-2 py-1 rounded transform hover:scale-110 transition">Ollama</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 px-2 py-1 rounded transform hover:scale-110 transition">ChromaDB</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/PromptQuest" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center group">
                             View on GitHub <i class="fas fa-external-link-alt ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
                         </a>
                     </div>
@@ -807,7 +877,7 @@
                     <div class="w-full md:w-5/12 px-4">
                         <div class="card-bg p-6 rounded-lg shadow-lg transform hover:scale-105 hover:rotate-1 transition-all">
                             <h3 class="font-bold text-lg mb-2">Data Engineer Intern @ S2.AI</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Dec 2024 - Jan 2025</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-400">Dec 2024 - Jan 2025</p>
                             <p class="text-sm mt-2">Built ETL pipelines, improved YOLOv5 accuracy by 12%</p>
                         </div>
                     </div>
@@ -871,7 +941,7 @@
                         <i class="fas fa-shield-alt text-3xl text-blue-500 mr-4 float-animation"></i>
                         <div>
                             <h3 class="font-bold">Cyber Intelligence in Robotics</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">MIT Square • Mar 2024</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-400">MIT Square • Mar 2024</p>
                         </div>
                     </div>
                     <p class="text-sm">Linux Admin, Kali Linux, Packet Tracer</p>
@@ -882,7 +952,7 @@
                         <i class="fab fa-aws text-3xl text-orange-500 mr-4 float-animation"></i>
                         <div>
                             <h3 class="font-bold">AWS Cloud Practitioner</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services • Feb 2024</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-400">Amazon Web Services • Feb 2024</p>
                         </div>
                     </div>
                     <p class="text-sm">Cloud Computing, AWS Core Services</p>
@@ -893,11 +963,75 @@
                         <i class="fab fa-python text-3xl text-green-500 mr-4 float-animation"></i>
                         <div>
                             <h3 class="font-bold">Python 101 for Data Science</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">IBM Skills Network • Nov 2022</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-400">IBM Skills Network • Nov 2022</p>
                         </div>
                     </div>
                     <p class="text-sm">Python Basics, Pandas, Data Science</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Tweets Section -->
+    <section id="tweets" class="py-20 relative overflow-hidden">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">My Study Resources</h2>
+            <p class="text-center text-gray-700 dark:text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">
+                Access my collection of study materials, notes, and resources
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Example resource cards - You can dynamically update these -->
+                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-file-pdf text-3xl text-red-500 mr-4"></i>
+                        <div class="flex-1">
+                            <h3 class="font-bold mb-1">Machine Learning Notes</h3>
+                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">Comprehensive ML algorithms and concepts</p>
+                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: Jan 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                        Download <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-file-code text-3xl text-blue-500 mr-4"></i>
+                        <div class="flex-1">
+                            <h3 class="font-bold mb-1">Python Cheat Sheet</h3>
+                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">Quick reference for Python programming</p>
+                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: Dec 2024</span>
+                        </div>
+                    </div>
+                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                        Download <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-file-alt text-3xl text-green-500 mr-4"></i>
+                        <div class="flex-1">
+                            <h3 class="font-bold mb-1">Data Science Resources</h3>
+                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">Curated list of DS learning materials</p>
+                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: Jan 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                        Download <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-gray-700 dark:text-gray-400 mb-4">More resources coming soon!</p>
+                <p class="text-sm text-gray-600 dark:text-gray-500">
+                    Follow me on social media for updates when new materials are uploaded
+                </p>
             </div>
         </div>
     </section>
@@ -912,6 +1046,13 @@
                 <!-- Contact Form -->
                 <div data-aos="fade-right" data-aos-duration="1500">
                     <form id="contactForm" class="space-y-6">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-6">
+                            <p class="text-sm text-blue-700 dark:text-blue-400">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                To send emails directly, please use a backend service like EmailJS or Formspree. 
+                                For now, you can copy my email: psbhaveshsharma@gmail.com
+                            </p>
+                        </div>
                         <div class="group">
                             <label class="block text-sm font-medium mb-2">Name</label>
                             <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
@@ -944,28 +1085,28 @@
                             <i class="fas fa-envelope text-3xl text-blue-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Email</p>
-                                <p class="text-gray-600 dark:text-gray-400">psbhaveshsharma@gmail.com</p>
+                                <p class="text-gray-700 dark:text-gray-400">psbhaveshsharma@gmail.com</p>
                             </div>
                         </div>
                         <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
                             <i class="fas fa-phone text-3xl text-green-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Phone</p>
-                                <p class="text-gray-600 dark:text-gray-400">+91 6385497381</p>
+                                <p class="text-gray-700 dark:text-gray-400">+91 6385497381</p>
                             </div>
                         </div>
                         <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
                             <i class="fas fa-map-marker-alt text-3xl text-red-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Location</p>
-                                <p class="text-gray-600 dark:text-gray-400">Chennai, Tamil Nadu, India</p>
+                                <p class="text-gray-700 dark:text-gray-400">Chennai, Tamil Nadu, India</p>
                             </div>
                         </div>
                         <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
                             <i class="fab fa-linkedin text-3xl text-blue-700 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">LinkedIn</p>
-                                <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition">
+                                <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="text-gray-700 dark:text-gray-400 hover:text-blue-600 transition">
                                     /in/bhavesh-puranam
                                 </a>
                             </div>
@@ -974,7 +1115,7 @@
                             <i class="fab fa-github text-3xl text-gray-800 dark:text-gray-200 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">GitHub</p>
-                                <a href="https://github.com/bhxvxshh" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition">
+                                <a href="https://github.com/bhxvxshh" target="_blank" class="text-gray-700 dark:text-gray-400 hover:text-blue-600 transition">
                                     @bhxvxshh
                                 </a>
                             </div>
