@@ -1,339 +1,839 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bhavesh Puranam • Portfolio</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- AOS for scroll animations -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-  <!-- fullPage.js -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.css"
-  />
-  <!-- Font Awesome (for icons) -->
-  <script src="https://kit.fontawesome.com/9d1f0d7a00.js" crossorigin="anonymous"></script>
-
-  <style>
-    /* Simple star-field background for intro */
-    #stars {
-      position: absolute;
-      width: 100%; height: 100%;
-      background: #0f172a url('https://i.imgur.com/9Yz4X2X.png') repeat;
-      animation: moveStars 60s linear infinite;
-      z-index: 0;
-    }
-    @keyframes moveStars {
-      from { background-position: 0 0 }
-      to   { background-position: -10000px 5000px }
-    }
-    /* Typewriter cursor */
-    .typewriter-text::after {
-      content: '|';
-      animation: blink 1s step-end infinite;
-      margin-left: 0.1em;
-    }
-    @keyframes blink {
-      50% { opacity: 0 }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhavesh Puranam - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Dark mode variables */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --accent: #3b82f6;
+        }
+        
+        .dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #60a5fa;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent); }
+        }
+        
+        /* Card hover effects */
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Timeline styles */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+        }
+        
+        /* Progress bar animation */
+        .progress-bar {
+            animation: fillProgress 2s ease-out forwards;
+        }
+        
+        @keyframes fillProgress {
+            from { width: 0; }
+        }
+        
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        
+        /* Active nav indicator */
+        .nav-link.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+    </style>
 </head>
 <body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-white dark:bg-gray-900 shadow-md transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#intro" class="text-2xl font-bold text-blue-600 dark:text-blue-400">BP</a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#intro" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
+                    <a href="#about" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+                    <a href="#skills" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Skills</a>
+                    <a href="#projects" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Projects</a>
+                    <a href="#education" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Education</a>
+                    <a href="#timeline" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Timeline</a>
+                    <a href="#certifications" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Certifications</a>
+                    <a href="#contact" class="nav-link px-2 py-1 hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+                    
+                    <!-- Dark mode toggle -->
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#intro" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+                <a href="#about" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+                <a href="#skills" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Skills</a>
+                <a href="#projects" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+                <a href="#education" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Education</a>
+                <a href="#timeline" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Timeline</a>
+                <a href="#certifications" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Certifications</a>
+                <a href="#contact" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-  <div id="fullpage">
-    <!-- INTRO -->
-    <section class="relative flex items-center justify-center bg-white">
-      <div id="stars"></div>
-      <div class="z-10 text-center px-4">
-        <h1 id="typewriter" class="text-5xl md:text-6xl font-extrabold text-gray-900 typewriter-text cursor-pointer">
-          <!-- JS will fill this in -->
-        </h1>
-      </div>
+    <!-- Intro Section -->
+    <section id="intro" class="min-h-screen flex items-center justify-center relative">
+        <div id="particles-js" class="absolute inset-0"></div>
+        <div class="relative z-10 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                <span class="typewriter">I'm Bhavesh Puranam.</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mt-8 opacity-0 animate-fadeIn">
+                AI/ML Engineer • Data Scientist • Full Stack Developer
+            </p>
+            <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })" 
+                    class="mt-12 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transform hover:scale-105 transition opacity-0 animate-fadeIn animation-delay-1000">
+                Explore My Work <i class="fas fa-arrow-down ml-2"></i>
+            </button>
+        </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section flex flex-col lg:flex-row items-center bg-white px-6 py-16">
-      <div class="lg:w-1/2 mb-8 lg:mb-0" data-aos="fade-right">
-        <h2 class="text-4xl font-semibold mb-4 text-gray-900">About Me</h2>
-        <p class="text-gray-700 leading-relaxed">
-          Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology.
-          Passionate about solving real-world problems through innovative solutions in AI, data science, and web development.
-          Proficient in building intelligent systems, interactive applications, and scalable solutions.
-          Always learning, always growing! 🚀💡 Let's connect, collaborate, and create something amazing together! 🤝
-        </p>
-      </div>
-      <div class="lg:w-1/2 flex justify-center" data-aos="fade-left">
-        <img
-          src="Bp.jpg"
-          alt="Bhavesh Puranam"
-          class="w-64 h-64 rounded-full object-cover shadow-xl"
-        />
-      </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="Bp.jpg" alt="Bhavesh Puranam" class="rounded-lg shadow-xl w-full max-w-md mx-auto">
+                </div>
+                <div data-aos="fade-left">
+                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                        Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology. 
+                        Passionate about solving real-world problems through innovative solutions in AI, data science, and web development. 
+                        Proficient in building intelligent systems, interactive applications, and scalable solutions. 
+                        Always learning, always growing! 🚀💡 Let's connect, collaborate, and create something amazing together! 🤝
+                    </p>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="https://github.com/bhxvxshh" target="_blank" class="text-3xl hover:text-blue-600 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="text-3xl hover:text-blue-600 transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:psbhaveshsharma@gmail.com" class="text-3xl hover:text-blue-600 transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- SKILLS -->
-    <section class="section bg-gray-50 px-6 py-16">
-      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Skills</h2>
-      <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        <!-- repeat this block, adjusting icon & text -->
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left">
-          <i class="fab fa-python text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Python</span>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Skills & Technologies</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Skills will be populated from existing structure -->
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="100">
+                    <i class="fab fa-python text-4xl mb-2 text-blue-500"></i>
+                    <p class="font-semibold">Python</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="150">
+                    <i class="fas fa-database text-4xl mb-2 text-green-500"></i>
+                    <p class="font-semibold">SQL</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="200">
+                    <i class="fas fa-brain text-4xl mb-2 text-purple-500"></i>
+                    <p class="font-semibold">Scikit-learn</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="250">
+                    <i class="fas fa-table text-4xl mb-2 text-orange-500"></i>
+                    <p class="font-semibold">Pandas</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="300">
+                    <i class="fas fa-calculator text-4xl mb-2 text-red-500"></i>
+                    <p class="font-semibold">NumPy</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="350">
+                    <i class="fas fa-flask text-4xl mb-2 text-indigo-500"></i>
+                    <p class="font-semibold">Flask</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="400">
+                    <i class="fas fa-rocket text-4xl mb-2 text-teal-500"></i>
+                    <p class="font-semibold">FastAPI</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="450">
+                    <i class="fas fa-stream text-4xl mb-2 text-pink-500"></i>
+                    <p class="font-semibold">Streamlit</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="500">
+                    <i class="fab fa-git-alt text-4xl mb-2 text-orange-600"></i>
+                    <p class="font-semibold">Git</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="550">
+                    <i class="fas fa-fire text-4xl mb-2 text-yellow-500"></i>
+                    <p class="font-semibold">PyTorch</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="600">
+                    <i class="fas fa-robot text-4xl mb-2 text-blue-600"></i>
+                    <p class="font-semibold">TensorFlow</p>
+                </div>
+                <div class="skill-card bg-gray-100 dark:bg-gray-800 p-6 rounded-lg text-center hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="650">
+                    <i class="fab fa-docker text-4xl mb-2 text-blue-400"></i>
+                    <p class="font-semibold">Docker</p>
+                </div>
+            </div>
         </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="50">
-          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">SQL</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="100">
-          <i class="fas fa-brain text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Scikit-learn</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="150">
-          <i class="fas fa-chart-line text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Pandas</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="200">
-          <i class="fas fa-cube text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">NumPy</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="250">
-          <i class="fas fa-flask text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Flask</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="300">
-          <i class="fas fa-bolt text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">FastAPI</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left" data-aos-delay="350">
-          <i class="fas fa-stream text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Streamlit</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center" data-aos="flip-left">
-          <i class="fab fa-git-alt text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Git</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-book text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Jupyter</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">PostgreSQL</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">MySQL</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fab fa-pied-piper text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">PyTorch</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fab fa-tensorflow text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">TensorFlow</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-project-diagram text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">KMeans</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-sliders-h text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">SVM</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-chart-bar text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">ARIMA</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fab fa-docker text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Docker</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-link text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">LangChain</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-database text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">ChromaDB</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-camera text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">OpenCV</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fab fa-postman text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">Postman</span>
-        </div>
-        <div class="p-4 bg-white rounded-xl shadow hover:shadow-lg flex flex-col items-center">
-          <i class="fas fa-robot text-3xl text-indigo-600 mb-2"></i>
-          <span class="font-medium text-gray-800">ML Algorithms</span>
-        </div>
-      </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="section bg-white px-6 py-16">
-      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Projects</h2>
-      <div class="max-w-5xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in">
-          <h3 class="text-2xl font-bold mb-2">NutriAI</h3>
-          <p>Engineered AI-Driven personalized nutrition coach using YOLOv8, LLaMA 3.2, HGNN & FastAPI; achieved 91% precision & 89% F1-score.</p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- NutriAI -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-apple-alt text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">NutriAI</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">AI-Driven Personalized Nutrition Coach with YOLOv8, LLaMA 3.2</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Tech Stack</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">YOLOv8</span>
+                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">LLaMA 3.2</span>
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">FastAPI</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/nutriai" target="_blank" class="text-blue-600 hover:underline">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LeafShield -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
+                        <i class="fas fa-leaf text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">LeafShield</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Deep Learning-Based Plant Leaf Disease Classifier</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Accuracy</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-green-500 to-teal-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">CNN</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">TensorFlow</span>
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">OpenCV</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/leafshield" target="_blank" class="text-blue-600 hover:underline">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MailMind -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-envelope-open-text text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">MailMind</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">NLP-Based Email Extraction & Summarization System</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Efficiency</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">BERT</span>
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">spaCy</span>
+                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Streamlit</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/mailmind" target="_blank" class="text-blue-600 hover:underline">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PromptQuest -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-robot text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">PromptQuest</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">AI Essay & Policy Q&A Platform with RAG</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>AI Integration</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-indigo-500 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">LangChain</span>
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Ollama</span>
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">ChromaDB</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/promptquest" target="_blank" class="text-blue-600 hover:underline">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- GradeGuard -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">GradeGuard</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Student Performance Predictor with SVM</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Prediction Accuracy</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">SVM</span>
+                            <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Flask</span>
+                            <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Flask-Mail</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/gradeguard" target="_blank" class="text-blue-600 hover:underline">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SpendPredictor -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">SpendPredictor</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Personal Finance Forecasting App</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Forecasting</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="progress-bar bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">ARIMA</span>
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">KMeans</span>
+                            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Flask</span>
+                        </div>
+                        <a href="https://github.com/bhxvxshh/spendpredictor" target="_blank" class="text-blue-600 hover:underline">
+                            View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="100">
-          <h3 class="text-2xl font-bold mb-2">LeafShield</h3>
-          <p>Designed custom CNN & OpenCV pipeline to classify 12 plant diseases with 95%+ accuracy via TensorFlow.</p>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="200">
-          <h3 class="text-2xl font-bold mb-2">MailMind</h3>
-          <p>Built an NLP pipeline with BERT & spaCy for real-time email summarization & sentiment analysis; exposed via FastAPI & Streamlit.</p>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="300">
-          <h3 class="text-2xl font-bold mb-2">PromptQuest</h3>
-          <p>Created a LangChain + ChromaDB essay & policy Q&A platform with Ollama LLMs & Streamlit interface.</p>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="400">
-          <h3 class="text-2xl font-bold mb-2">GradeGuard</h3>
-          <p>Implemented SVM model & Flask-Mail alerts to predict student performance and send progress tips.</p>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="zoom-in" data-aos-delay="500">
-          <h3 class="text-2xl font-bold mb-2">SpendPredictor</h3>
-          <p>Forecasted personal finance with ARIMA & KMeans in Flask app, enabling budgeting simulations & clustering.</p>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg col-span-full sm:col-auto" data-aos="zoom-in" data-aos-delay="600">
-          <h3 class="text-2xl font-bold mb-2">File Navigator</h3>
-          <p>Developed a cross-platform CLI using Python & difflib for fuzzy file search across nested structures.</p>
-        </div>
-      </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section class="section bg-white px-6 py-16">
-      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Education</h2>
-      <div class="max-w-4xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="fade-up">
-          <h3 class="text-xl font-bold">B.Tech in CSE (AI & ML)</h3>
-          <p class="italic">SRM IST Chennai • 2022–2026 (CGPA 8.12)</p>
-          <p class="mt-2 text-gray-700">Relevant: ML, Deep Learning, NLP, Compiler Design, Cloud Computing</p>
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Education</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- B.Tech -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">B.Tech - AI & ML</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">SRM Institute of Science and Technology</p>
+                    <p class="text-sm text-gray-500 mt-2">Expected 2026 • CGPA: 8.12</p>
+                </div>
+
+                <!-- Class XII -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">Class XII</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">Velammal Matric Hr. Sec. School</p>
+                    <p class="text-sm text-gray-500 mt-2">2022 • Computer Science • First Class</p>
+                </div>
+
+                <!-- Class X -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4">Class X</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">Velammal Matric Hr. Sec. School</p>
+                    <p class="text-sm text-gray-500 mt-2">2020 • First Class • Chess Champion</p>
+                </div>
+            </div>
         </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="fade-up" data-aos-delay="100">
-          <h3 class="text-xl font-bold">Class XII, CS Stream</h3>
-          <p class="italic">Velammal Matric Hr. Sec. School • 2022</p>
-          <p class="mt-2 text-gray-700">First Class</p>
-        </div>
-        <div class="p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
-          <h3 class="text-xl font-bold">Class X</h3>
-          <p class="italic">Velammal Matric Hr. Sec. School • 2020</p>
-          <p class="mt-2 text-gray-700">First Class; 1st Prize in School Chess Tournament</p>
-        </div>
-      </div>
     </section>
 
-    <!-- TIMELINE -->
-    <section class="section bg-white px-6 py-16">
-      <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900" data-aos="fade-down">Roadmap & Timeline</h2>
-      <div class="max-w-3xl mx-auto relative">
-        <!-- vertical line -->
-        <div class="absolute left-1/2 transform -translate-x-1 bg-indigo-600 w-1 h-full"></div>
-        <!-- items -->
-        <div class="space-y-12">
-          <!-- 10th -->
-          <div class="flex items-center justify-start" data-aos="fade-right">
-            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
-              <i class="fas fa-school"></i>
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">My Journey</h2>
+            <div class="relative timeline">
+                <!-- Timeline items -->
+                <div class="timeline-item mb-8 flex items-center w-full" data-aos="fade-right">
+                    <div class="w-full md:w-5/12 px-4">
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="font-bold text-lg mb-2">Data Engineer Intern @ S2.AI</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Dec 2024 - Jan 2025</p>
+                            <p class="text-sm mt-2">Built ETL pipelines, improved YOLOv5 accuracy by 12%</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                </div>
+
+                <div class="timeline-item mb-8 flex items-center w-full justify-end" data-aos="fade-left">
+                    <div class="w-full md:w-5/12 px-4">
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="font-bold text-lg mb-2">Python Developer Intern @ Pricol</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Dec 2023</p>
+                            <p class="text-sm mt-2">Developed RFID login system, reduced file retrieval time by 40%</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                </div>
+
+                <div class="timeline-item mb-8 flex items-center w-full" data-aos="fade-right">
+                    <div class="w-full md:w-5/12 px-4">
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="font-bold text-lg mb-2">Started B.Tech at SRM</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">2022</p>
+                            <p class="text-sm mt-2">AI & ML Specialization</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                </div>
+
+                <div class="timeline-item mb-8 flex items-center w-full justify-end" data-aos="fade-left">
+                    <div class="w-full md:w-5/12 px-4">
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="font-bold text-lg mb-2">Completed Class XII</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">2022</p>
+                            <p class="text-sm mt-2">Computer Science, First Class</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-orange-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                </div>
+
+                <div class="timeline-item flex items-center w-full" data-aos="fade-right">
+                    <div class="w-full md:w-5/12 px-4">
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="font-bold text-lg mb-2">Completed Class X</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">2020</p>
+                            <p class="text-sm mt-2">First Class, Chess Tournament Winner</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-white dark:border-gray-800"></div>
+                </div>
             </div>
-            <div class="ml-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg">
-              <h3 class="font-bold">Class X • Velammal Matric Hr. Sec. School</h3>
-              <p class="italic text-gray-600">2020</p>
-            </div>
-          </div>
-          <!-- 12th -->
-          <div class="flex items-center justify-end" data-aos="fade-left">
-            <div class="mr-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg text-right">
-              <h3 class="font-bold">Class XII, CS Stream</h3>
-              <p class="italic text-gray-600">2022</p>
-            </div>
-            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-          </div>
-          <!-- Python Dev Intern -->
-          <div class="flex items-center justify-start" data-aos="fade-right">
-            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
-              <i class="fas fa-laptop-code"></i>
-            </div>
-            <div class="ml-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg">
-              <h3 class="font-bold">Python Dev Intern • Pricol Ltd</h3>
-              <p class="italic text-gray-600">Dec 2023</p>
-            </div>
-          </div>
-          <!-- Data Engineer Intern -->
-          <div class="flex items-center justify-end" data-aos="fade-left">
-            <div class="mr-6 p-6 bg-gray-100 rounded-xl shadow hover:shadow-lg text-right">
-              <h3 class="font-bold">Data Engineer Intern • S2.AI</h3>
-              <p class="italic text-gray-600">Dec 2024 – Jan 2025</p>
-            </div>
-            <div class="bg-indigo-600 text-white p-3 rounded-full z-10">
-              <i class="fas fa-database"></i>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section bg-white px-6 py-16">
-      <h2 class="text-4xl font-semibold text-center mb-8 text-gray-900" data-aos="fade-down">Get In Touch</h2>
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <img src="https://i.imgur.com/OYVPeal.png" alt="Contact illustration" class="w-full rounded-lg shadow-lg" data-aos="fade-right"/>
-        <form action="#" class="space-y-4" data-aos="fade-left">
-          <input type="text" placeholder="Name" class="w-full p-4 border rounded-lg focus:outline-indigo-500"/>
-          <input type="email" placeholder="Email" class="w-full p-4 border rounded-lg focus:outline-indigo-500"/>
-          <input type="text" placeholder="Phone" class="w-full p-4 border rounded-lg focus:outline-indigo-500"/>
-          <textarea rows="5" placeholder="Message" class="w-full p-4 border rounded-lg focus:outline-indigo-500"></textarea>
-          <button type="submit" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
-            <i class="fas fa-paper-plane mr-2"></i>Submit
-          </button>
-        </form>
-      </div>
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Certifications</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-shield-alt text-3xl text-blue-500 mr-4"></i>
+                        <div>
+                            <h3 class="font-bold">Cyber Intelligence in Robotics</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">MIT Square • Mar 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">Linux Admin, Kali Linux, Packet Tracer</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-aws text-3xl text-orange-500 mr-4"></i>
+                        <div>
+                            <h3 class="font-bold">AWS Cloud Practitioner</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services • Feb 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">Cloud Computing, AWS Core Services</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-python text-3xl text-green-500 mr-4"></i>
+                        <div>
+                            <h3 class="font-bold">Python 101 for Data Science</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">IBM Skills Network • Nov 2022</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">Python Basics, Pandas, Data Science</p>
+                </div>
+            </div>
+        </div>
     </section>
-  </div>
 
-  <!-- AOS & fullPage init -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.14/fullpage.min.js"></script>
-  <script>
-    // TYPEWRITER
-    const nameText = "I’m Bhavesh Puranam.";
-    let i = 0;
-    const el = document.getElementById("typewriter");
-    function type() {
-      if (i < nameText.length) {
-        el.textContent += nameText.charAt(i++);
-        setTimeout(type, 100);
-      } else {
-        // after typing, make clickable
-        el.addEventListener("click", ()=> fullpage_api.moveSectionDown());
-      }
-    }
-    document.addEventListener("DOMContentLoaded", ()=> {
-      type();
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div data-aos="fade-right">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                    <div id="successMessage" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200 rounded-lg">
+                        Thank you for your message! I'll get back to you soon.
+                    </div>
+                </div>
 
-      // init fullPage.js
-      new fullpage("#fullpage", {
-        anchors: [
-          "intro","about","skills","projects",
-          "education","timeline","contact"
-        ],
-        navigation: true,
-        navigationPosition: "right",
-        scrollOverflow: true
-      });
-      // init AOS
-      AOS.init({ once: true, duration: 800 });
-    });
-  </script>
+                <!-- Map & Contact Info -->
+                <div data-aos="fade-left">
+                    <div class="h-64 mb-6 rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3160461!2d78.2677!3d17.4123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-2xl text-blue-600 mr-4"></i>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-gray-600 dark:text-gray-400">psbhaveshsharma@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-2xl text-blue-600 mr-4"></i>
+                            <div>
+                                <p class="font-semibold">Phone</p>
+                                <p class="text-gray-600 dark:text-gray-400">+91 6385497381</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-2xl text-blue-600 mr-4"></i>
+                            <div>
+                                <p class="font-semibold">Location</p>
+                                <p class="text-gray-600 dark:text-gray-400">Chennai, Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>© 2024 Bhavesh Puranam. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="https://github.com/bhxvxshh" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/bhavesh-puranam/" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="mailto:psbhaveshsharma@gmail.com" class="hover:text-blue-400 transition">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize particles
+        tsParticles.load("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#3b82f6" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#3b82f6",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Contact form
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Form validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (name && email && message) {
+                // Show success message
+                successMessage.classList.remove('hidden');
+                contactForm.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 5000);
+            }
+        });
+
+        // Add animation classes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .animate-fadeIn {
+                animation: fadeIn 1s ease-out forwards;
+            }
+            
+            .animation-delay-1000 {
+                animation-delay: 1s;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
