@@ -458,7 +458,7 @@
                     <img src="Bp.jpg" alt="Bhavesh Puranam" class="rounded-lg shadow-xl w-full max-w-md mx-auto float-animation">
                 </div>
                 <div data-aos="fade-left" data-aos-duration="1500">
-                    <p class="text-lg leading-relaxed text-gray-800 dark:text-gray-300 parallax">
+                    <p class="text-lg leading-relaxed text-gray-900 dark:text-gray-300 parallax">
                         Tech enthusiast and B.Tech student specializing in AI and ML at SRM Institute of Science and Technology. 
                         Passionate about solving real-world problems through innovative solutions in AI, data science, and web development. 
                         Proficient in building intelligent systems, interactive applications, and scalable solutions. 
@@ -848,7 +848,7 @@
                         </div>
                         <h3 class="text-xl font-bold ml-4">Class XII</h3>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400">Velammal Vidhyashram Mambakkam</p>
+                    <p class="text-gray-600 dark:text-gray-400">Velammal Matric Hr. Sec. School</p>
                     <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">2022 • Computer Science • First Class</p>
                 </div>
 
@@ -860,7 +860,7 @@
                         </div>
                         <h3 class="text-xl font-bold ml-4">Class X</h3>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400">RMK Patashaala</p>
+                    <p class="text-gray-600 dark:text-gray-400">Velammal Matric Hr. Sec. School</p>
                     <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">2020 • First Class • Chess Champion</p>
                 </div>
             </div>
@@ -977,54 +977,33 @@
         <div class="blob"></div>
         <div class="blob"></div>
         <div class="container mx-auto px-6 relative z-10">
-            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Free Resources</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">My Study Resources</h2>
             <p class="text-center text-gray-700 dark:text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">
                 Access my collection of study materials, notes, and resources
             </p>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Example resource cards - You can dynamically update these -->
-                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="flex items-start mb-4">
-                        <i class="fas fa-file-pdf text-3xl text-red-500 mr-4"></i>
-                        <div class="flex-1">
-                            <h3 class="font-bold mb-1">Machine Learning Notes</h3>
-                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">Comprehensive ML algorithms and concepts</p>
-                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: Jan 2025</span>
-                        </div>
-                    </div>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                        Download <i class="fas fa-download ml-2"></i>
-                    </a>
+            <!-- Admin Panel (hidden by default - toggle with URL parameter) -->
+            <div id="adminPanel" class="hidden mb-8 card-bg p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Add New Resource</h3>
+                <div class="space-y-4">
+                    <input type="text" id="resourceTitle" placeholder="Resource Title" class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700">
+                    <textarea id="resourceDescription" placeholder="Description" class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700"></textarea>
+                    <select id="resourceType" class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700">
+                        <option value="pdf">PDF</option>
+                        <option value="code">Code</option>
+                        <option value="doc">Document</option>
+                        <option value="video">Video</option>
+                        <option value="link">Link</option>
+                    </select>
+                    <input type="text" id="resourceLink" placeholder="Resource URL/Link" class="w-full px-4 py-2 border rounded-lg dark:bg-gray-700">
+                    <button onclick="addResource()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Add Resource
+                    </button>
                 </div>
-
-                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="flex items-start mb-4">
-                        <i class="fas fa-file-code text-3xl text-blue-500 mr-4"></i>
-                        <div class="flex-1">
-                            <h3 class="font-bold mb-1">Python Cheat Sheet</h3>
-                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">Quick reference for Python programming</p>
-                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: Dec 2024</span>
-                        </div>
-                    </div>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                        Download <i class="fas fa-download ml-2"></i>
-                    </a>
-                </div>
-
-                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="flex items-start mb-4">
-                        <i class="fas fa-file-alt text-3xl text-green-500 mr-4"></i>
-                        <div class="flex-1">
-                            <h3 class="font-bold mb-1">Data Science Resources</h3>
-                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">Curated list of DS learning materials</p>
-                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: Jan 2025</span>
-                        </div>
-                    </div>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                        Download <i class="fas fa-download ml-2"></i>
-                    </a>
-                </div>
+            </div>
+            
+            <div id="resourcesContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Resources will be loaded here dynamically -->
             </div>
 
             <div class="text-center mt-12" data-aos="fade-up">
@@ -1042,66 +1021,39 @@
         <div class="blob"></div>
         <div class="container mx-auto px-6 relative z-10">
             <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Get In Touch</h2>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div data-aos="fade-right" data-aos-duration="1500">
-                    <form id="contactForm" class="space-y-6">
-                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-6">
-                            <p class="text-sm text-blue-700 dark:text-blue-400">
-                                <i class="fas fa-info-circle mr-2"></i>
-                                For now, you can copy my email: psbhaveshsharma@gmail.com
-                            </p>
-                        </div>
-                        <div class="group">
-                            <label class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
-                        </div>
-                        <div class="group">
-                            <label class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
-                        </div>
-                        <div class="group">
-                            <label class="block text-sm font-medium mb-2">Phone</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all">
-                        </div>
-                        <div class="group">
-                            <label class="block text-sm font-medium mb-2">Message</label>
-                            <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 transition-all resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 glow">
-                            Send Message <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
-                    <div id="successMessage" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200 rounded-lg float-animation">
-                        Thank you for your message! I'll get back to you soon.
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div data-aos="fade-left" data-aos-duration="1500">
-                    <div class="space-y-6">
-                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+            <div class="max-w-3xl mx-auto">
+                <!-- Contact Info Only -->
+                <div data-aos="fade-up" data-aos-duration="1500">
+                    <p class="text-center text-gray-700 dark:text-gray-400 mb-12">
+                        Feel free to reach out to me through any of the following channels!
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-center card-bg p-6 rounded-lg transform hover:scale-105 transition-all shadow-lg">
                             <i class="fas fa-envelope text-3xl text-blue-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Email</p>
-                                <p class="text-gray-700 dark:text-gray-400">psbhaveshsharma@gmail.com</p>
+                                <a href="mailto:psbhaveshsharma@gmail.com" class="text-gray-700 dark:text-gray-400 hover:text-blue-600 transition">
+                                    psbhaveshsharma@gmail.com
+                                </a>
                             </div>
                         </div>
-                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                        <div class="flex items-center card-bg p-6 rounded-lg transform hover:scale-105 transition-all shadow-lg">
                             <i class="fas fa-phone text-3xl text-green-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Phone</p>
-                                <p class="text-gray-700 dark:text-gray-400">+91 6385497381</p>
+                                <a href="tel:+916385497381" class="text-gray-700 dark:text-gray-400 hover:text-green-600 transition">
+                                    +91 6385497381
+                                </a>
                             </div>
                         </div>
-                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                        <div class="flex items-center card-bg p-6 rounded-lg transform hover:scale-105 transition-all shadow-lg">
                             <i class="fas fa-map-marker-alt text-3xl text-red-600 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">Location</p>
                                 <p class="text-gray-700 dark:text-gray-400">Chennai, Tamil Nadu, India</p>
                             </div>
                         </div>
-                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                        <div class="flex items-center card-bg p-6 rounded-lg transform hover:scale-105 transition-all shadow-lg">
                             <i class="fab fa-linkedin text-3xl text-blue-700 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">LinkedIn</p>
@@ -1110,7 +1062,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="flex items-center card-bg p-4 rounded-lg transform hover:scale-105 transition-all">
+                        <div class="flex items-center card-bg p-6 rounded-lg transform hover:scale-105 transition-all shadow-lg md:col-span-2 md:w-1/2 md:mx-auto">
                             <i class="fab fa-github text-3xl text-gray-800 dark:text-gray-200 mr-4 pulse-animation"></i>
                             <div>
                                 <p class="font-semibold">GitHub</p>
@@ -1119,6 +1071,11 @@
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <p class="text-gray-700 dark:text-gray-400">
+                            Looking forward to connecting with you! 🚀
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1297,30 +1254,6 @@
             });
         });
 
-        // Contact form
-        const contactForm = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Form validation
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if (name && email && message) {
-                // Show success message
-                successMessage.classList.remove('hidden');
-                contactForm.reset();
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    successMessage.classList.add('hidden');
-                }, 5000);
-            }
-        });
-
         // Tilt effect on hover
         document.querySelectorAll('.tilt').forEach(element => {
             element.addEventListener('mousemove', (e) => {
@@ -1362,6 +1295,130 @@
         document.querySelectorAll('.project-card').forEach(card => {
             progressObserver.observe(card);
         });
+
+        // Resource management system
+        let resources = [
+            {
+                title: "Machine Learning Notes",
+                description: "Comprehensive ML algorithms and concepts",
+                type: "pdf",
+                link: "#",
+                date: "Jan 2025",
+                icon: "fa-file-pdf",
+                color: "text-red-500"
+            },
+            {
+                title: "Python Cheat Sheet",
+                description: "Quick reference for Python programming",
+                type: "code",
+                link: "#",
+                date: "Dec 2024",
+                icon: "fa-file-code",
+                color: "text-blue-500"
+            },
+            {
+                title: "Data Science Resources",
+                description: "Curated list of DS learning materials",
+                type: "doc",
+                link: "#",
+                date: "Jan 2025",
+                icon: "fa-file-alt",
+                color: "text-green-500"
+            }
+        ];
+
+        // Load resources from localStorage if available
+        const savedResources = localStorage.getItem('portfolioResources');
+        if (savedResources) {
+            resources = JSON.parse(savedResources);
+        }
+
+        // Function to render resources
+        function renderResources() {
+            const container = document.getElementById('resourcesContainer');
+            if (!container) return;
+            
+            container.innerHTML = resources.map((resource, index) => `
+                <div class="card-bg rounded-lg shadow-lg p-6 transform hover:scale-105 transition-all" data-aos="zoom-in" data-aos-delay="${index * 100}">
+                    <div class="flex items-start mb-4">
+                        <i class="fas ${resource.icon} text-3xl ${resource.color} mr-4"></i>
+                        <div class="flex-1">
+                            <h3 class="font-bold mb-1">${resource.title}</h3>
+                            <p class="text-sm text-gray-700 dark:text-gray-400 mb-2">${resource.description}</p>
+                            <span class="text-xs text-gray-600 dark:text-gray-500">Updated: ${resource.date}</span>
+                        </div>
+                    </div>
+                    <a href="${resource.link}" ${resource.link !== '#' ? 'target="_blank"' : ''} class="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                        ${resource.link === '#' ? 'Coming Soon' : 'Download'} <i class="fas fa-${resource.link === '#' ? 'clock' : 'download'} ml-2"></i>
+                    </a>
+                </div>
+            `).join('');
+            
+            // Reinitialize AOS for new elements
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+
+        // Function to add new resource
+        window.addResource = function() {
+            const title = document.getElementById('resourceTitle').value;
+            const description = document.getElementById('resourceDescription').value;
+            const type = document.getElementById('resourceType').value;
+            const link = document.getElementById('resourceLink').value;
+            
+            if (!title || !description || !link) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            const iconMap = {
+                pdf: 'fa-file-pdf',
+                code: 'fa-file-code',
+                doc: 'fa-file-alt',
+                video: 'fa-video',
+                link: 'fa-link'
+            };
+            
+            const colorMap = {
+                pdf: 'text-red-500',
+                code: 'text-blue-500',
+                doc: 'text-green-500',
+                video: 'text-purple-500',
+                link: 'text-indigo-500'
+            };
+            
+            const newResource = {
+                title,
+                description,
+                type,
+                link,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+                icon: iconMap[type],
+                color: colorMap[type]
+            };
+            
+            resources.unshift(newResource);
+            localStorage.setItem('portfolioResources', JSON.stringify(resources));
+            renderResources();
+            
+            // Clear form
+            document.getElementById('resourceTitle').value = '';
+            document.getElementById('resourceDescription').value = '';
+            document.getElementById('resourceLink').value = '';
+        }
+
+        // Check for admin mode
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('admin') === 'true') {
+            const adminPanel = document.getElementById('adminPanel');
+            if (adminPanel) {
+                adminPanel.classList.remove('hidden');
+            }
+        }
+
+        // Render resources on page load
+        renderResources();
     </script>
 </body>
 </html>
